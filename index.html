@@ -12,17 +12,38 @@
   <style>
     /* Gör header till flex-container */
     header {
+      position: relative;
       display: flex;
       align-items: center;
-      justify-content: center; /* centrerar nav och h1 i mitten */
+      justify-content: center; /* centrerar brand-gruppen */
       padding: 1rem;
+      background-color: #2E8B57;
     }
-    /* Loggan längst till vänster */
-    header .logo {
-      height: 48px;       /* justera efter önskad höjd */
-      margin-right: auto; /* trycker övriga element mot mitten/höger */
+
+    /* Logga absolut längst till vänster */
+    .logo {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 48px; /* justera vid behov */
     }
-    /* Gör nav-listan horisontell och centrerar texten */
+
+    /* Grupp för titel + meny, centrerad tack vare header justify-content */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .brand h1 {
+      margin: 0;
+      color: #fff;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    /* Menyn */
     nav ul {
       list-style: none;
       display: flex;
@@ -34,8 +55,14 @@
       display: block;
       text-align: center;
       text-decoration: none;
+      color: #fff;
       font-weight: 600;
       line-height: 1;
+      transition: color 0.2s;
+    }
+    nav a:hover,
+    nav a:focus {
+      color: #C1FFC1;
     }
   </style>
 </head>
