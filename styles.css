@@ -1,0 +1,105 @@
+    /* ===== Grundreset ===== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ===== Body & Typsnitt ===== */
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f9f9f9;
+    }
+
+    /* ===== Huvudlayout ===== */
+    header {
+      background-color: #2E8B57;        /* mörkare ‘forest green’ */
+      color: #ffffff;
+      padding: 1rem 0;
+    }
+
+    header .container {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s ease-in-out;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      color: #C1FFC1;                  /* ljusare mint-grön på hover */
+    }
+
+    /* ===== Sektioner ===== */
+    section {
+      max-width: 900px;
+      margin: 2.5rem auto;
+      padding: 0 1rem;
+    }
+
+    section#about {
+      background-color: #ffffff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    section#services ul {
+      list-style: disc inside;
+      margin-top: 1rem;
+    }
+
+    section#services li {
+      margin-bottom: 0.5rem;
+    }
+
+    section#contact p {
+      margin: 0.5rem 0;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      background-color: #e6e6e6;
+      color: #555;
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 0.9rem;
+    }
+
+    /* ===== Responsivitet ===== */
+    @media (max-width: 600px) {
+      header .container {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+    }
