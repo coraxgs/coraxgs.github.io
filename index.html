@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Corax CoLAB</title>
-  
-  <!-- Ersätt om du vill med din externa styles.css -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css"/>
 
-  <!-- Tillfällig inbäddad CSS för att placera logga + centrera meny -->
   <style>
-    /* Gör header till flex-container */
+    /* ===== Header ===== */
     header {
       position: relative;
       display: flex;
@@ -70,20 +67,20 @@
 <body>
 
   <header>
-    <!-- Logga, filen coraxcolabloggarund.png bör ligga i samma mapp -->
+    <!-- Logga -->
     <img src="coraxcolabloggarund.png" alt="Corax CoLAB Logo" class="logo">
 
-    <!-- Sites titel, den ligger kvar till höger om loggan -->
-    <h1>Corax CoLAB</h1>
-
-    <!-- Själva menyn -->
-    <nav>
-      <ul>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#services">Our Services</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <!-- Brand-gruppen: titel + meny, staplade -->
+    <div class="brand">
+      <h1>Corax CoLAB</h1>
+      <nav>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Our Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <section id="about">
