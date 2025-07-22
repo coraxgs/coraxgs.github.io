@@ -4,12 +4,51 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Corax CoLAB</title>
+  
+  <!-- Ersätt om du vill med din externa styles.css -->
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Tillfällig inbäddad CSS för att placera logga + centrera meny -->
+  <style>
+    /* Gör header till flex-container */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center; /* centrerar nav och h1 i mitten */
+      padding: 1rem;
+    }
+    /* Loggan längst till vänster */
+    header .logo {
+      height: 48px;       /* justera efter önskad höjd */
+      margin-right: auto; /* trycker övriga element mot mitten/höger */
+    }
+    /* Gör nav-listan horisontell och centrerar texten */
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav a {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 600;
+      line-height: 1;
+    }
+  </style>
 </head>
 <body>
 
   <header>
+    <!-- Logga, filen coraxcolabloggarund.png bör ligga i samma mapp -->
+    <img src="coraxcolabloggarund.png" alt="Corax CoLAB Logo" class="logo">
+
+    <!-- Sites titel, den ligger kvar till höger om loggan -->
     <h1>Corax CoLAB</h1>
+
+    <!-- Själva menyn -->
     <nav>
       <ul>
         <li><a href="#about">About Us</a></li>
@@ -46,7 +85,7 @@
     <p>&copy; 2025 Corax CoLAB. All rights reserved.</p>
   </footer>
 
-  <!-- Link your JavaScript here -->
+  <!-- Länk till ditt eventuella script -->
   <script src="script.js"></script>
 </body>
 </html>
