@@ -4,20 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Corax CoLAB – AI, IT, Web3 & Blockchain Showcase</title>
-  <meta name="description" content="Corax CoLAB – Innovation inom AI, IT, Web3 och Blockchain. Utforska våra open source-applikationer och projekt på GitHub.">
+  <meta name="description" content="Corax CoLAB – Innovation with AI, Web3 and Blockchain. Explore our open source-applications and other projects on GitHub.">
   <meta name="author" content="Corax CoLAB">
   
   <!-- Open Graph Meta -->
-  <meta property="og:title" content="Corax CoLAB – AI, IT, Web3 & Blockchain Showcase">
-  <meta property="og:description" content="Utforska våra open source-projekt inom AI, IT, Web3 och Blockchain.">
+  <meta property="og:title" content="Corax CoLAB – AI, Web3 & Blockchain Showcase">
+  <meta property="og:description" content="Explore our open source-applications and other projects on GitHub.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://coraxgs.github.io">
   <meta property="og:image" content="https://coraxcolab.coraxgardening.se/logo.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Corax CoLAB – AI, IT, Web3 & Blockchain Showcase">
-  <meta name="twitter:description" content="Open source-projekt inom AI, IT, Web3 och Blockchain.">
+  <meta name="twitter:title" content="Corax CoLAB – AI, Web3 & Blockchain Showcase">
+  <meta name="twitter:description" content="Open source-projects in the fields of AI, Web3 and Blockchain.">
   <meta name="twitter:image" content="https://coraxcolab.coraxgardening.se/logo.png">
 
   <style>
@@ -110,17 +110,17 @@
 <body>
   <header>
     <h1>Corax CoLAB</h1>
-    <p>AI, IT, Web3 & Blockchain – Open Source Innovation</p>
+    <p>AI, Web3 & Blockchain – Open Source Innovation</p>
   </header>
   <main>
     <section>
-      <h2>Våra applikationer</h2>
+      <h2>Our Applications</h2>
       <div id="repo-list" class="repo-grid"></div>
-      <div id="no-repos" class="no-repos" style="display:none;">Inga projekt hittades.</div>
+      <div id="no-repos" class="no-repos" style="display:none;">No projects were found.</div>
     </section>
   </main>
   <footer>
-    © <span id="year"></span> Corax CoLAB – Bygger framtiden med AI och decentraliserad teknik.
+    © <span id="year"></span> Corax CoLAB – Builds the future with AI and decentralized tech.
   </footer>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -155,8 +155,8 @@
           container.appendChild(card);
         });
       } catch (error) {
-        console.error('Fel vid hämtning av repos:', error);
-        document.getElementById('no-repos').textContent = 'Kunde inte ladda projekten.';
+        console.error('Something went wrong when fetching repos:', error);
+        document.getElementById('no-repos').textContent = 'Could not load the projects.';
         document.getElementById('no-repos').style.display = 'block';
       }
     }
