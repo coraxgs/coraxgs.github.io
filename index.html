@@ -1,151 +1,167 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Corax CoLAB</title>
-  <link rel="stylesheet" href="styles.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corax CoLAB – AI, IT, Web3 & Blockchain Showcase</title>
+  <meta name="description" content="Corax CoLAB – Innovation inom AI, IT, Web3 och Blockchain. Utforska våra open source-applikationer och projekt på GitHub.">
+  <meta name="author" content="Corax CoLAB">
+  
+  <!-- Open Graph Meta -->
+  <meta property="og:title" content="Corax CoLAB – AI, IT, Web3 & Blockchain Showcase">
+  <meta property="og:description" content="Utforska våra open source-projekt inom AI, IT, Web3 och Blockchain.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://coraxgs.github.io">
+  <meta property="og:image" content="https://coraxcolab.coraxgardening.se/logo.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Corax CoLAB – AI, IT, Web3 & Blockchain Showcase">
+  <meta name="twitter:description" content="Open source-projekt inom AI, IT, Web3 och Blockchain.">
+  <meta name="twitter:image" content="https://coraxcolab.coraxgardening.se/logo.png">
 
   <style>
-    /* ===== Header ===== */
-    header {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;  /* centrerar brand-gruppen */
-      padding: 1rem;
-      background-color: #2E8B57;
-    }
-
-    /* Logga absolut längst till vänster */
-    .logo {
-      position: absolute;
-      left: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      height: 48px; /* justera efter behov */
-    }
-
-    /* Brand-gruppen: titel + meny */
-    .brand {
-      display: flex;
-      flex-direction: column;   /* staplar titel över meny */
-      align-items: center;
-      gap: 0.75rem;             /* avstånd mellan titel och meny */
-    }
-
-    .brand h1 {
-      margin: 0;
-      color: #fff;
-      font-size: 1.8rem;
-      font-weight: 700;
-    }
-
-    /* Menyn under titeln */
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0d0d0d;
+      color: #e0e0e0;
       margin: 0;
       padding: 0;
+      line-height: 1.6;
     }
-    nav a {
-      display: block;
+    header {
+      background: linear-gradient(90deg, #1a1a40, #0f3460);
+      padding: 2rem;
       text-align: center;
-      text-decoration: none;
-      color: #fff;
-      font-weight: 600;
-      line-height: 1;
-      transition: color 0.2s;
+      border-bottom: 2px solid #00ffcc;
     }
-    nav a:hover,
-    nav a:focus {
-      color: #C1FFC1;
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      color: #00ffcc;
     }
-    .patreon-container {
+    header p {
+      margin-top: 0.5rem;
+      font-size: 1.2rem;
+      color: #cccccc;
+    }
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+    }
+    h2 {
       text-align: center;
-      margin: 2rem 0;
+      color: #00ffcc;
+      margin-bottom: 1.5rem;
     }
-    .patreon-btn {
+    .repo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .repo-card {
+      background-color: #1a1a1a;
+      border: 1px solid #00ffcc33;
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .repo-card:hover {
+      transform: translateY(-5px);
+      border-color: #00ffcc;
+      box-shadow: 0px 0px 15px #00ffcc44;
+    }
+    .repo-card h3 {
+      margin-top: 0;
+      color: #00ffcc;
+    }
+    .repo-card p {
+      font-size: 0.95rem;
+      color: #cccccc;
+    }
+    .tags {
+      margin-top: 0.5rem;
+    }
+    .tag {
       display: inline-block;
-      background-color: #F96854;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      padding: 0.75rem 1.5rem;
-      border-radius: 4px;
-      transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+      background-color: #0f3460;
+      color: #00ffcc;
+      padding: 0.2rem 0.5rem;
+      margin: 0.2rem;
+      border-radius: 5px;
+      font-size: 0.8rem;
     }
-    .patreon-btn:hover,
-    .patreon-btn:focus {
-      background-color: #e8594f;
-      transform: translateY(-2px);
+    .no-repos {
+      text-align: center;
+      font-size: 1rem;
+      color: #aaaaaa;
+      margin-top: 2rem;
     }
-    .patreon-btn:active {
-      transform: translateY(0);
+    footer {
+      text-align: center;
+      padding: 1rem;
+      border-top: 1px solid #00ffcc33;
+      font-size: 0.9rem;
+      color: #777;
     }
   </style>
 </head>
 <body>
-
   <header>
-    <!-- Logga -->
-    <img src="coraxcolabloggarund.png" alt="Corax CoLAB Logo" class="logo">
-
-    <!-- Brand-gruppen: titel + meny, staplade -->
-    <div class="brand">
-      <h1>Corax CoLAB</h1>
-      <nav>
-        <ul>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#services">Our Services</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
+    <h1>Corax CoLAB</h1>
+    <p>AI, IT, Web3 & Blockchain – Open Source Innovation</p>
   </header>
-
-  <section id="about">
-    <h2>About Us</h2>
-    <p>
-      At Corax CoLAB, we combine creativity with cutting-edge technology to develop AI-driven solutions that promote sustainable development and eco-friendly practices.
-    </p>
-  </section>
-
-  <section id="services">
-    <h2>Our Services</h2>
-    <ul>
-      <li>AI-powered Environmental Monitoring</li>
-      <li>Sustainability Analysis with Machine Learning</li>
-      <li>Blockchain for Supply Chain Transparency</li>
-    </ul>
-  </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:coraxcolab@gmail.com">coraxcolab@gmail.com</a></p>
-    <p>Phone: +46 702 XXX XXX</p>
-    <p>Address: Gothenburg, Sweden</p>
-  </section>
-
-  <!-- Patreon-knapp, placera den här -->
-<div class="patreon-container">
-    <a
-      href="https://www.patreon.com/13483660/join"
-      class="patreon-btn"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Get your share! Donate on Patreon!
-    </a>
-  </div>
-  
-
+  <main>
+    <section>
+      <h2>Våra applikationer</h2>
+      <div id="repo-list" class="repo-grid"></div>
+      <div id="no-repos" class="no-repos" style="display:none;">Inga projekt hittades.</div>
+    </section>
+  </main>
   <footer>
-    <p>&copy; 2025 Corax CoLAB. All rights reserved.</p>
+    © <span id="year"></span> Corax CoLAB – Bygger framtiden med AI och decentraliserad teknik.
   </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-  <!-- Länk till ditt eventuella script -->
-  <script src="script.js"></script>
+    async function fetchRepos() {
+      try {
+        const res = await fetch(
+          'https://api.github.com/users/coraxgs/repos?sort=updated',
+          { headers: { Accept: 'application/vnd.github.mercy-preview+json' } }
+        );
+        const repos = await res.json();
+        const container = document.getElementById('repo-list');
+        const noRepos = document.getElementById('no-repos');
+        container.innerHTML = '';
+
+        if (!Array.isArray(repos) || repos.length === 0) {
+          noRepos.style.display = 'block';
+          return;
+        }
+
+        repos.forEach(repo => {
+          const card = document.createElement('div');
+          card.className = 'repo-card';
+          card.innerHTML = `
+            <h3><a href="${repo.html_url}" target="_blank" style="color:#00ffcc; text-decoration:none;">${repo.name}</a></h3>
+            <p>${repo.description || 'Ingen beskrivning tillgänglig'}</p>
+            <div class="tags">
+              ${repo.language ? `<span class="tag">${repo.language}</span>` : ''}
+              ${repo.topics && repo.topics.length ? repo.topics.map(t => `<span class="tag">${t}</span>`).join('') : ''}
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      } catch (error) {
+        console.error('Fel vid hämtning av repos:', error);
+        document.getElementById('no-repos').textContent = 'Kunde inte ladda projekten.';
+        document.getElementById('no-repos').style.display = 'block';
+      }
+    }
+
+    fetchRepos();
+  </script>
 </body>
 </html>
