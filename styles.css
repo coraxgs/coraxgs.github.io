@@ -199,6 +199,28 @@ nav.scrolled {
   width: 80%;
 }
 
+/* Language toggle */
+.language-toggle {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  border-radius: var(--border-radius-small);
+  transition: var(--transition);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.language-toggle:hover {
+  background: rgba(0, 255, 204, 0.1);
+  color: var(--primary-color);
+  transform: scale(1.05);
+}
+
 /* Theme toggle */
 .theme-toggle {
   background: none;
@@ -323,6 +345,21 @@ nav.scrolled {
 
 .mobile-nav-content a:hover::before {
   width: 80%;
+}
+
+/* Mobile navigation controls */
+.mobile-nav-controls {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid rgba(0, 255, 204, 0.2);
+}
+
+.mobile-nav-controls .language-toggle {
+  font-size: 1.1rem;
+  padding: var(--spacing-sm);
 }
 
 /* Hero Section */
@@ -1260,6 +1297,22 @@ footer::before {
   .nav-container {
     padding: 0 var(--spacing-sm);
   }
+}
+
+/* Language transition animations */
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-i18n] {
+  animation: fadeInText 0.3s ease-out;
 }
 
 /* Dark mode support (default) */

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="sv" id="html-root">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -131,10 +131,11 @@
         <span class="logo-text">Corax CoLAB</span>
       </button>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#about">Om oss</a></li>
-        <li><a href="#expertise">Expertområden</a></li>
-        <li><a href="#projects">Projekt</a></li>
-        <li><a href="#contact">Kontakt</a></li>
+        <li><a href="#about" data-i18n="nav.about">Om oss</a></li>
+        <li><a href="#expertise" data-i18n="nav.expertise">Expertområden</a></li>
+        <li><a href="#projects" data-i18n="nav.projects">Projekt</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Kontakt</a></li>
+        <li><button id="language-toggle" class="language-toggle" title="Byt språk" aria-label="Växla mellan svenska och engelska">🌐 SV</button></li>
         <li><button id="theme-toggle" class="theme-toggle" title="Växla tema" aria-label="Växla mellan mörkt och ljust tema">🌙</button></li>
       </ul>
       <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Öppna navigeringsmeny">
@@ -146,10 +147,13 @@
     <!-- Mobile Navigation Overlay -->
     <div class="mobile-nav-overlay" id="mobile-nav-overlay">
       <div class="mobile-nav-content">
-        <a href="#about" onclick="closeMobileMenu()">Om oss</a>
-        <a href="#expertise" onclick="closeMobileMenu()">Expertområden</a>
-        <a href="#projects" onclick="closeMobileMenu()">Projekt</a>
-        <a href="#contact" onclick="closeMobileMenu()">Kontakt</a>
+        <a href="#about" onclick="closeMobileMenu()" data-i18n="nav.about">Om oss</a>
+        <a href="#expertise" onclick="closeMobileMenu()" data-i18n="nav.expertise">Expertområden</a>
+        <a href="#projects" onclick="closeMobileMenu()" data-i18n="nav.projects">Projekt</a>
+        <a href="#contact" onclick="closeMobileMenu()" data-i18n="nav.contact">Kontakt</a>
+        <div class="mobile-nav-controls">
+          <button id="mobile-language-toggle" class="language-toggle" title="Byt språk">🌐 SV</button>
+        </div>
       </div>
     </div>
   </nav>
@@ -161,15 +165,15 @@
       <div class="hero-logo">
         <img src="images/logo.png" alt="Corax CoLAB Logo" class="hero-logo-img">
       </div>
-      <h1>Bygger framtidens teknologi</h1>
-      <p class="hero-subtitle">AI • Web3 • Blockchain • Automation</p>
-      <p class="hero-description">
+      <h1 data-i18n="hero.title">Bygger framtidens teknologi</h1>
+      <p class="hero-subtitle" data-i18n="hero.subtitle">AI • Web3 • Blockchain • Automation</p>
+      <p class="hero-description" data-i18n="hero.description">
         Corax CoLAB är en oberoende forsknings- och utvecklingsstudio som skapar praktiska lösningar 
         inom AI, automation, Web3 och blockchain. Vi utvecklar både open source-projekt och avancerade 
         proprietära system som GAP och GAPbot. Vi designar, prototypar och levererar hållbara system som 
         gör avancerad teknik tillgänglig för verkliga problem.
       </p>
-      <a href="#projects" class="cta-button">
+      <a href="#projects" class="cta-button" data-i18n="hero.cta">
         🚀 Utforska våra projekt
       </a>
     </div>
@@ -177,8 +181,8 @@
 
   <!-- About Section -->
   <section id="about">
-    <h2 class="section-title">Vem är vi?</h2>
-    <p class="section-subtitle">
+    <h2 class="section-title" data-i18n="about.title">Vem är vi?</h2>
+    <p class="section-subtitle" data-i18n="about.description">
       Vi är innovatörer, forskare och ingenjörer som utvecklar både open source-projekt och proprietära lösningar. 
       Vår mission är att accelerera adoption av ansvarsfull automation och decentralisering genom högkvalitativa, 
       granskningsbara och resurseffektiva system. Vi bidrar aktivt till open source-communityn samtidigt som vi 
@@ -191,8 +195,8 @@
           <img src="images/ai-illustration.svg" alt="AI & Machine Learning Illustration" class="feature-img">
         </div>
         <span class="feature-icon">🤖</span>
-        <h3>AI & Machine Learning</h3>
-        <p>Edge-vänliga modeller och pipelines för datorseende, prediktiv kontroll och resursoptimering. 
+        <h3 data-i18n="features.ai.title">AI & Machine Learning</h3>
+        <p data-i18n="features.ai.description">Edge-vänliga modeller och pipelines för datorseende, prediktiv kontroll och resursoptimering. 
         Lågenergi-inferens på Raspberry Pi och liknande hårdvara.</p>
       </div>
       
@@ -201,8 +205,8 @@
           <img src="images/automation-illustration.svg" alt="Automation & GreenTech Illustration" class="feature-img">
         </div>
         <span class="feature-icon">🌱</span>
-        <h3>Automation & GreenTech</h3>
-        <p>System och kontroller för trädgårdar, småskaligt jordbruk och industriella processer som 
+        <h3 data-i18n="features.automation.title">Automation & GreenTech</h3>
+        <p data-i18n="features.automation.description">System och kontroller för trädgårdar, småskaligt jordbruk och industriella processer som 
         minskar energi-, vatten- och näringsanvändning.</p>
       </div>
       
@@ -211,8 +215,8 @@
           <img src="images/blockchain-illustration.svg" alt="Web3 & Blockchain Illustration" class="feature-img">
         </div>
         <span class="feature-icon">⛓️</span>
-        <h3>Web3 & Blockchain</h3>
-        <p>Decentraliserade applikationer, smarta kontrakt, verktyg och integrationslager för 
+        <h3 data-i18n="features.blockchain.title">Web3 & Blockchain</h3>
+        <p data-i18n="features.blockchain.description">Decentraliserade applikationer, smarta kontrakt, verktyg och integrationslager för 
         förtroendeminimerade tjänster och tokeniserade incitament.</p>
       </div>
       
@@ -227,64 +231,64 @@
 
   <!-- Stats Section -->
   <section id="expertise">
-    <h2 class="section-title">Våra värdegrund</h2>
-    <p class="section-subtitle">
+    <h2 class="section-title" data-i18n="values.title">Våra värdegrund</h2>
+    <p class="section-subtitle" data-i18n="values.description">
       Vi leds av tydliga principer som formar allt vi gör
     </p>
     
     <div class="stats-grid">
       <div class="stat-card">
         <span class="stat-number">💎</span>
-        <div class="stat-label">Open Source + Proprietär</div>
+        <div class="stat-label" data-i18n="values.opensource">Open Source + Proprietär</div>
       </div>
       <div class="stat-card">
         <span class="stat-number">♻️</span>
-        <div class="stat-label">Resurseffektivitet</div>
+        <div class="stat-label" data-i18n="values.efficiency">Resurseffektivitet</div>
       </div>
       <div class="stat-card">
         <span class="stat-number">🔒</span>
-        <div class="stat-label">Integritet & Säkerhet</div>
+        <div class="stat-label" data-i18n="values.security">Integritet & Säkerhet</div>
       </div>
       <div class="stat-card">
         <span class="stat-number">🤝</span>
-        <div class="stat-label">Interoperabilitet</div>
+        <div class="stat-label" data-i18n="values.interoperability">Interoperabilitet</div>
       </div>
     </div>
   </section>
 
   <!-- Projects Section -->
   <section id="projects">
-    <h2 class="section-title">Våra Projekt</h2>
-    <p class="section-subtitle">
+    <h2 class="section-title" data-i18n="projects.title">Våra Projekt</h2>
+    <p class="section-subtitle" data-i18n="projects.description">
       Utforska våra senaste projekt inom AI, automation och blockchain-teknik - både open source-bidrag och proprietära lösningar
     </p>
     
     <div id="loading" class="loading" style="display: block;">
       <div class="spinner"></div>
-      <span>Laddar projekt...</span>
+      <span data-i18n="projects.loading">Laddar projekt...</span>
     </div>
     
     <div id="projects-grid" class="projects-grid" style="display: none;"></div>
     
     <div id="error-message" class="error-message" style="display: none;">
-      <h3>⚠️ Kunde inte ladda projekt</h3>
-      <p>Det uppstod ett problem vid hämtning av våra GitHub-repositorier. Besök vår 
-      <a href="https://github.com/coraxgs" target="_blank" style="color: var(--primary-color);">GitHub-profil</a> 
+      <h3 data-i18n="projects.error.title">⚠️ Kunde inte ladda projekt</h3>
+      <p data-i18n="projects.error.description">Det uppstod ett problem vid hämtning av våra GitHub-repositorier. Besök vår 
+      <a href="https://github.com/coraxgs" target="_blank" style="color: var(--primary-color);" data-i18n="projects.error.link">GitHub-profil</a> 
       direkt för att se alla projekt.</p>
     </div>
   </section>
   <!-- Contact Section -->
   <section id="contact">
-    <h2 class="section-title">Kom i kontakt</h2>
-    <p class="section-subtitle">
+    <h2 class="section-title" data-i18n="contact.title">Kom i kontakt</h2>
+    <p class="section-subtitle" data-i18n="contact.description">
       Intresserad av samarbete eller har frågor om våra projekt? Tveka inte att höra av dig!
     </p>
     
     <div class="features-grid" style="max-width: 800px; margin: 0 auto;">
       <div class="feature-card">
         <span class="feature-icon">💻</span>
-        <h3>GitHub</h3>
-        <p>Utforska vår kod, rapportera buggar och bidra till våra open source-projekt.</p>
+        <h3 data-i18n="contact.github.title">GitHub</h3>
+        <p data-i18n="contact.github.description">Utforska vår kod, rapportera buggar och bidra till våra open source-projekt.</p>
         <a href="https://github.com/coraxgs" target="_blank" class="project-link">
           github.com/coraxgs →
         </a>
@@ -292,8 +296,8 @@
       
       <div class="feature-card">
         <span class="feature-icon">🌐</span>
-        <h3>Webbplats</h3>
-        <p>Besök vår huvudwebbplats för mer information om våra tjänster och expertområden.</p>
+        <h3 data-i18n="contact.website.title">Webbplats</h3>
+        <p data-i18n="contact.website.description">Besök vår huvudwebbplats för mer information om våra tjänster och expertområden.</p>
         <a href="https://coraxcolab.coraxgardening.se" target="_blank" class="project-link">
           coraxcolab.coraxgardening.se →
         </a>
@@ -305,14 +309,14 @@
     <div class="footer-content">
       <div class="footer-links">
         <a href="https://github.com/coraxgs" target="_blank">GitHub</a>
-        <a href="https://coraxcolab.coraxgardening.se" target="_blank">Webbplats</a>
-        <a href="#about">Om oss</a>
-        <a href="#projects">Projekt</a>
+        <a href="https://coraxcolab.coraxgardening.se" target="_blank" data-i18n="contact.website.title">Webbplats</a>
+        <a href="#about" data-i18n="nav.about">Om oss</a>
+        <a href="#projects" data-i18n="nav.projects">Projekt</a>
       </div>
       <p style="color: var(--text-muted); margin-top: 1rem;">
-        © <span id="year"></span> Corax CoLAB – Bygger framtiden med AI, automation och decentraliserad teknik.
+        © <span id="year"></span> Corax CoLAB – <span data-i18n="footer.tagline">Bygger framtiden med AI, automation och decentraliserad teknik.</span>
         <br>
-        <small>Vi utvecklar både open source-projekt och avancerade proprietära system för olika användningsområden.</small>
+        <small data-i18n="footer.description">Vi utvecklar både open source-projekt och avancerade proprietära system för olika användningsområden.</small>
       </p>
     </div>
   </footer>
