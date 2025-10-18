@@ -13,13 +13,13 @@
   <meta property="og:description" content="Oberoende forsknings- och utvecklingsstudio som bygger praktiska open source-lösningar inom AI, automation och blockchain-teknik.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://coraxgs.github.io">
-  <meta property="og:image" content="https://coraxcolab.coraxgardening.se/logo.png">
+  <meta property="og:image" content="https://coraxgs.github.io/images/logo.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Corax CoLAB – Future-Forward Innovation">
   <meta name="twitter:description" content="Praktiska open source-lösningar inom AI, automation, Web3 och blockchain.">
-  <meta name="twitter:image" content="https://coraxcolab.coraxgardening.se/logo.png">
+  <meta name="twitter:image" content="https://coraxgs.github.io/images/logo.png">
   
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🔬%3C/text%3E%3C/svg%3E">
@@ -126,7 +126,10 @@
   <!-- Navigation -->
   <nav id="navbar">
     <div class="nav-container">
-      <button class="logo" onclick="scrollToTop()" onkeydown="handleLogoKeydown(event)" aria-label="Gå till toppen av sidan">🔬 Corax CoLAB</button>
+      <button class="logo" onclick="scrollToTop()" onkeydown="handleLogoKeydown(event)" aria-label="Gå till toppen av sidan">
+        <img src="images/logo.png" alt="Corax CoLAB" class="logo-img">
+        <span class="logo-text">Corax CoLAB</span>
+      </button>
       <ul class="nav-links" id="nav-links">
         <li><a href="#about">Om oss</a></li>
         <li><a href="#expertise">Expertområden</a></li>
@@ -153,7 +156,11 @@
 
   <!-- Hero Section -->
   <section class="hero">
+    <div class="hero-bg-overlay"></div>
     <div class="hero-content">
+      <div class="hero-logo">
+        <img src="images/logo.png" alt="Corax CoLAB Logo" class="hero-logo-img">
+      </div>
       <h1>Bygger framtidens teknologi</h1>
       <p class="hero-subtitle">AI • Web3 • Blockchain • Automation</p>
       <p class="hero-description">
@@ -178,6 +185,9 @@
     
     <div class="features-grid">
       <div class="feature-card">
+        <div class="feature-illustration">
+          <img src="images/ai-illustration.svg" alt="AI & Machine Learning Illustration" class="feature-img">
+        </div>
         <span class="feature-icon">🤖</span>
         <h3>AI & Machine Learning</h3>
         <p>Edge-vänliga modeller och pipelines för datorseende, prediktiv kontroll och resursoptimering. 
@@ -185,6 +195,9 @@
       </div>
       
       <div class="feature-card">
+        <div class="feature-illustration">
+          <img src="images/automation-illustration.svg" alt="Automation & GreenTech Illustration" class="feature-img">
+        </div>
         <span class="feature-icon">🌱</span>
         <h3>Automation & GreenTech</h3>
         <p>System och kontroller för trädgårdar, småskaligt jordbruk och industriella processer som 
@@ -192,6 +205,9 @@
       </div>
       
       <div class="feature-card">
+        <div class="feature-illustration">
+          <img src="images/blockchain-illustration.svg" alt="Web3 & Blockchain Illustration" class="feature-img">
+        </div>
         <span class="feature-icon">⛓️</span>
         <h3>Web3 & Blockchain</h3>
         <p>Decentraliserade applikationer, smarta kontrakt, verktyg och integrationslager för 

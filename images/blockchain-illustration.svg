@@ -1,0 +1,95 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="blockchainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0066ff"/>
+      <stop offset="50%" style="stop-color:#00ffcc"/>
+      <stop offset="100%" style="stop-color:#ff6b35"/>
+    </linearGradient>
+    <filter id="blockGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <rect width="800" height="600" fill="#0a0a0a"/>
+  
+  <!-- Blockchain blocks -->
+  <g filter="url(#blockGlow)">
+    <!-- Block 1 -->
+    <rect x="50" y="200" width="120" height="80" rx="10" fill="none" stroke="#0066ff" stroke-width="2"/>
+    <text x="110" y="230" font-family="Inter, monospace" font-size="10" text-anchor="middle" fill="#0066ff">Block #1</text>
+    <text x="110" y="245" font-family="Inter, monospace" font-size="8" text-anchor="middle" fill="#00ffcc">Hash: 0x1a2b</text>
+    <text x="110" y="260" font-family="Inter, monospace" font-size="8" text-anchor="middle" fill="#00ffcc">Prev: 0x0000</text>
+    
+    <!-- Block 2 -->
+    <rect x="220" y="200" width="120" height="80" rx="10" fill="none" stroke="#00ffcc" stroke-width="2"/>
+    <text x="280" y="230" font-family="Inter, monospace" font-size="10" text-anchor="middle" fill="#00ffcc">Block #2</text>
+    <text x="280" y="245" font-family="Inter, monospace" font-size="8" text-anchor="middle" fill="#0066ff">Hash: 0x3c4d</text>
+    <text x="280" y="260" font-family="Inter, monospace" font-size="8" text-anchor="middle" fill="#0066ff">Prev: 0x1a2b</text>
+    
+    <!-- Block 3 -->
+    <rect x="390" y="200" width="120" height="80" rx="10" fill="none" stroke="#ff6b35" stroke-width="2"/>
+    <text x="450" y="230" font-family="Inter, monospace" font-size="10" text-anchor="middle" fill="#ff6b35">Block #3</text>
+    <text x="450" y="245" font-family="Inter, monospace" font-size="8" text-anchor="middle" fill="#00ffcc">Hash: 0x5e6f</text>
+    <text x="450" y="260" font-family="Inter, monospace" font-size="8" text-anchor="middle" fill="#00ffcc">Prev: 0x3c4d</text>
+    
+    <!-- Block 4 (New) -->
+    <rect x="560" y="200" width="120" height="80" rx="10" fill="none" stroke="#00ffcc" stroke-width="2" stroke-dasharray="5,5">
+      <animate attributeName="stroke-opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+    </rect>
+    <text x="620" y="230" font-family="Inter, monospace" font-size="10" text-anchor="middle" fill="#00ffcc">Block #4</text>
+    <text x="620" y="245" font-family="Inter, monospace" font-size="8" text-anchor="middle" fill="#808080">Mining...</text>
+    <text x="620" y="260" font-family="Inter, monospace" font-size="8" text-anchor="middle" fill="#808080">Prev: 0x5e6f</text>
+  </g>
+  
+  <!-- Connection arrows -->
+  <g stroke="url(#blockchainGrad)" stroke-width="3" fill="none" marker-end="url(#arrowhead)">
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="#00ffcc"/>
+      </marker>
+    </defs>
+    
+    <line x1="170" y1="240" x2="220" y2="240"/>
+    <line x1="340" y1="240" x2="390" y2="240"/>
+    <line x1="510" y1="240" x2="560" y2="240"/>
+  </g>
+  
+  <!-- Network nodes -->
+  <g fill="#00ffcc" opacity="0.7">
+    <circle cx="100" cy="100" r="8"/>
+    <circle cx="300" cy="80" r="6"/>
+    <circle cx="500" cy="110" r="7"/>
+    <circle cx="700" cy="90" r="5"/>
+    <circle cx="150" cy="400" r="6"/>
+    <circle cx="350" cy="420" r="8"/>
+    <circle cx="550" cy="380" r="7"/>
+    <circle cx="650" cy="430" r="6"/>
+  </g>
+  
+  <!-- Network connections -->
+  <g stroke="#0066ff" stroke-width="1" opacity="0.4">
+    <line x1="100" y1="100" x2="300" y2="80"/>
+    <line x1="300" y1="80" x2="500" y2="110"/>
+    <line x1="500" y1="110" x2="700" y2="90"/>
+    <line x1="150" y1="400" x2="350" y2="420"/>
+    <line x1="350" y1="420" x2="550" y2="380"/>
+    <line x1="550" y1="380" x2="650" y2="430"/>
+    <line x1="100" y1="100" x2="150" y2="400"/>
+    <line x1="700" y1="90" x2="650" y2="430"/>
+  </g>
+  
+  <!-- Transaction animation -->
+  <circle r="4" fill="#00ffcc">
+    <animateMotion dur="4s" repeatCount="indefinite">
+      <path d="M 100,100 Q 200,50 300,80 T 500,110 T 700,90"/>
+    </animateMotion>
+  </circle>
+  
+  <!-- Title -->
+  <text x="400" y="50" font-family="Inter, sans-serif" font-size="36" font-weight="700" 
+        text-anchor="middle" fill="url(#blockchainGrad)">Web3 & Blockchain</text>
+</svg>

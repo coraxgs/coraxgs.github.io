@@ -1,8 +1,15 @@
-const CACHE_NAME = 'corax-colab-v1.2';
+const CACHE_NAME = 'corax-colab-v1.3';
 const urlsToCache = [
   '/',
   '/index.html',
   '/manifest.json',
+  '/styles.css',
+  '/app.js',
+  '/images/logo.png',
+  '/images/hero-bg.svg',
+  '/images/ai-illustration.svg',
+  '/images/blockchain-illustration.svg',
+  '/images/automation-illustration.svg',
   'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap'
 ];
 

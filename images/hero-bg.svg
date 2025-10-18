@@ -1,0 +1,41 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="50%" style="stop-color:#16213e"/>
+      <stop offset="100%" style="stop-color:#0f3460"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:0.3"/>
+      <stop offset="70%" style="stop-color:#0066ff;stop-opacity:0.1"/>
+      <stop offset="100%" style="stop-color:transparent"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="1920" height="1080" fill="url(#heroGrad)"/>
+  <ellipse cx="960" cy="540" rx="800" ry="400" fill="url(#glow)"/>
+  
+  <!-- Tech pattern -->
+  <g opacity="0.1" stroke="#00ffcc" stroke-width="1" fill="none">
+    <circle cx="200" cy="200" r="50"/>
+    <circle cx="1720" cy="880" r="80"/>
+    <circle cx="1600" cy="200" r="60"/>
+    <circle cx="320" cy="880" r="40"/>
+    <path d="M200,200 L400,300 L600,150 L800,400"/>
+    <path d="M1200,600 L1400,500 L1600,700 L1720,880"/>
+  </g>
+  
+  <!-- Floating particles -->
+  <g fill="#00ffcc" opacity="0.6">
+    <circle cx="150" cy="300" r="2"/>
+    <circle cx="350" cy="150" r="1.5"/>
+    <circle cx="750" cy="250" r="2.5"/>
+    <circle cx="1100" cy="400" r="1"/>
+    <circle cx="1450" cy="300" r="2"/>
+    <circle cx="1650" cy="600" r="1.5"/>
+    <circle cx="1800" cy="450" r="2"/>
+    <circle cx="450" cy="700" r="1"/>
+    <circle cx="850" cy="800" r="2"/>
+    <circle cx="1250" cy="750" r="1.5"/>
+  </g>
+</svg>

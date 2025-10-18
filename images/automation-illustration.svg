@@ -1,0 +1,139 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="automationGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4aa"/>
+      <stop offset="50%" style="stop-color:#00ffcc"/>
+      <stop offset="100%" style="stop-color:#0066ff"/>
+    </linearGradient>
+    <filter id="plantGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <rect width="800" height="600" fill="#0a0a0a"/>
+  
+  <!-- Garden bed -->
+  <rect x="50" y="400" width="700" height="100" rx="20" fill="#2d5016" stroke="#00d4aa" stroke-width="2"/>
+  
+  <!-- Plants -->
+  <g filter="url(#plantGlow)">
+    <!-- Plant 1 -->
+    <g transform="translate(150, 380)">
+      <path d="M0,20 Q-10,0 -5,-20 Q0,-10 5,-20 Q10,0 0,20" fill="#22c55e"/>
+      <path d="M0,20 Q-8,10 -3,-15 Q2,-5 7,-15 Q8,10 0,20" fill="#16a34a"/>
+      <circle cx="0" cy="20" r="3" fill="#8b5cf6"/>
+    </g>
+    
+    <!-- Plant 2 -->
+    <g transform="translate(300, 370)">
+      <path d="M0,30 Q-15,5 -8,-25 Q0,-15 8,-25 Q15,5 0,30" fill="#22c55e"/>
+      <path d="M0,30 Q-12,15 -5,-20 Q3,-10 10,-20 Q12,15 0,30" fill="#16a34a"/>
+      <circle cx="0" cy="30" r="4" fill="#f59e0b"/>
+    </g>
+    
+    <!-- Plant 3 -->
+    <g transform="translate(500, 375)">
+      <path d="M0,25 Q-12,2 -6,-22 Q0,-12 6,-22 Q12,2 0,25" fill="#22c55e"/>
+      <path d="M0,25 Q-10,12 -4,-18 Q2,-8 8,-18 Q10,12 0,25" fill="#16a34a"/>
+      <circle cx="0" cy="25" r="3" fill="#ef4444"/>
+    </g>
+    
+    <!-- Plant 4 -->
+    <g transform="translate(650, 385)">
+      <path d="M0,15 Q-8,-2 -4,-18 Q0,-8 4,-18 Q8,-2 0,15" fill="#22c55e"/>
+      <circle cx="0" cy="15" r="2" fill="#06b6d4"/>
+    </g>
+  </g>
+  
+  <!-- Sensors -->
+  <g fill="#00ffcc" stroke="#0066ff" stroke-width="2">
+    <!-- Soil sensor -->
+    <rect x="120" y="450" width="15" height="30" rx="3"/>
+    <text x="140" y="470" font-family="Inter, sans-serif" font-size="10" fill="#00ffcc">Soil</text>
+    
+    <!-- Temperature sensor -->
+    <rect x="270" y="440" width="15" height="40" rx="3"/>
+    <text x="290" y="465" font-family="Inter, sans-serif" font-size="10" fill="#00ffcc">Temp</text>
+    
+    <!-- Humidity sensor -->
+    <rect x="470" y="445" width="15" height="35" rx="3"/>
+    <text x="490" y="468" font-family="Inter, sans-serif" font-size="10" fill="#00ffcc">Humid</text>
+    
+    <!-- Light sensor -->
+    <circle cx="627" cy="455" r="8"/>
+    <text x="645" y="460" font-family="Inter, sans-serif" font-size="10" fill="#00ffcc">Light</text>
+  </g>
+  
+  <!-- IoT connections -->
+  <g stroke="#0066ff" stroke-width="1" opacity="0.6" stroke-dasharray="3,3">
+    <line x1="127" y1="450" x2="200" y2="350"/>
+    <line x1="277" y1="440" x2="200" y2="350"/>
+    <line x1="477" y1="445" x2="200" y2="350"/>
+    <line x1="627" y1="455" x2="200" y2="350"/>
+  </g>
+  
+  <!-- Central controller -->
+  <g transform="translate(200, 350)">
+    <rect x="-25" y="-15" width="50" height="30" rx="5" fill="#1e293b" stroke="#00ffcc" stroke-width="2"/>
+    <text x="0" y="0" font-family="Inter, sans-serif" font-size="8" text-anchor="middle" fill="#00ffcc">Controller</text>
+    <circle cx="-15" cy="-5" r="2" fill="#22c55e"/>
+    <circle cx="-15" cy="5" r="2" fill="#ef4444"/>
+    <circle cx="15" cy="0" r="2" fill="#0066ff">
+      <animate attributeName="fill" values="#0066ff;#00ffcc;#0066ff" dur="2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Data streams -->
+  <g fill="#00ffcc" opacity="0.8">
+    <circle r="2">
+      <animateMotion dur="3s" repeatCount="indefinite">
+        <path d="M 127,450 L 200,350"/>
+      </animateMotion>
+    </circle>
+    <circle r="2">
+      <animateMotion dur="3.5s" repeatCount="indefinite">
+        <path d="M 277,440 L 200,350"/>
+      </animateMotion>
+    </circle>
+  </g>
+  
+  <!-- Irrigation system -->
+  <g stroke="#06b6d4" stroke-width="3" fill="none">
+    <path d="M50,320 Q400,300 750,320" opacity="0.6"/>
+    <!-- Water drops -->
+    <g fill="#06b6d4" opacity="0.7">
+      <circle cx="200" cy="340" r="2">
+        <animate attributeName="cy" values="340;380;340" dur="1.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.7;0.3;0.7" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="400" cy="335" r="2">
+        <animate attributeName="cy" values="335;375;335" dur="1.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.7;0.3;0.7" dur="1.8s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="600" cy="342" r="2">
+        <animate attributeName="cy" values="342;382;342" dur="1.3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.7;0.3;0.7" dur="1.3s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+  </g>
+  
+  <!-- Status indicators -->
+  <g transform="translate(50, 100)">
+    <rect x="0" y="0" width="200" height="120" rx="10" fill="#1e293b" stroke="#00ffcc" stroke-width="1" opacity="0.8"/>
+    <text x="100" y="20" font-family="Inter, sans-serif" font-size="14" font-weight="600" text-anchor="middle" fill="#00ffcc">System Status</text>
+    
+    <text x="10" y="40" font-family="Inter, sans-serif" font-size="10" fill="#22c55e">✓ Soil Moisture: Optimal</text>
+    <text x="10" y="55" font-family="Inter, sans-serif" font-size="10" fill="#22c55e">✓ Temperature: 24°C</text>
+    <text x="10" y="70" font-family="Inter, sans-serif" font-size="10" fill="#f59e0b">⚠ Humidity: Low (45%)</text>
+    <text x="10" y="85" font-family="Inter, sans-serif" font-size="10" fill="#22c55e">✓ Light: Sufficient</text>
+    <text x="10" y="100" font-family="Inter, sans-serif" font-size="10" fill="#06b6d4">💧 Irrigation: Active</text>
+  </g>
+  
+  <!-- Title -->
+  <text x="400" y="50" font-family="Inter, sans-serif" font-size="36" font-weight="700" 
+        text-anchor="middle" fill="url(#automationGrad)">Automation & GreenTech</text>
+</svg>
