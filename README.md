@@ -2,7 +2,7 @@
 
 > **Future-Forward Innovation in AI, Web3 & Blockchain**
 
-A modern, responsive, and feature-rich showcase website for Corax CoLAB - an independent research & engineering studio focused on building open-source solutions at the intersection of **AI, IT, Web3 and Blockchain**.
+A modern, responsive, and feature-rich showcase website for Corax CoLAB - an independent research & engineering studio focused on building innovative solutions at the intersection of **AI, IT, Web3 and Blockchain**. We develop both open-source projects and advanced proprietary systems like GAP and GAPbot.
 
 ## 🚀 Live Site
 
@@ -113,12 +113,12 @@ const CoraxAnalytics = {
 ---
 
 ## Elevator pitch (short)
-Corax CoLAB develops practical, production-ready open-source applications that combine AI-driven automation with Web3 and blockchain infrastructure — from garden-automation and sensor systems to autonomous robotics, decentralized apps (dApps) and tooling for developers.
+Corax CoLAB develops practical, production-ready applications that combine AI-driven automation with Web3 and blockchain infrastructure — from garden-automation and sensor systems to autonomous robotics, decentralized apps (dApps) and developer tooling. We offer both open-source solutions for community benefit and advanced proprietary systems like GAP and GAPbot for commercial applications.
 
 ---
 
 ## Mission
-Our mission is to accelerate adoption of responsible automation and decentralization by delivering high-quality, auditable, and resource-efficient open-source software and hardware integrations. We aim to make advanced technologies accessible and useful for real-world problems — with sustainability, transparency and community collaboration as core values.
+Our mission is to accelerate adoption of responsible automation and decentralization by delivering high-quality, auditable, and resource-efficient software and hardware integrations. We aim to make advanced technologies accessible and useful for real-world problems — with sustainability, transparency and innovation as core values. We balance open-source community contributions with proprietary solutions for specialized commercial needs.
 
 ---
 
@@ -133,18 +133,24 @@ We focus on four complementary domains:
 ---
 
 ## Key principles & values
-- **Open-source first:** code is public, auditable and reusable. We prefer permissive licenses where appropriate to maximize adoption.
+- **Balanced approach:** we develop both open-source projects for community benefit and proprietary solutions for advanced commercial applications.
+- **Open-source contribution:** when possible, we share code publicly for community benefit, using permissive licenses to maximize adoption.
 - **Practical decentralization:** apply blockchain where it adds trust, ownership or incentives — not as an end in itself.
-- **Resource efficiency:** prioritize low-power and cost-effective deployments.
+- **Resource efficiency:** prioritize low-power and cost-effective deployments across all our solutions.
 - **Interoperability:** design software to play well with existing ecosystems (APIs, MQTT, Grafana, Prometheus, container runtimes).
-- **Privacy and safety:** treat sensitive data carefully and avoid centralizing secrets on public pages.
+- **Privacy and safety:** treat sensitive data carefully and maintain appropriate security levels for both open and proprietary systems.
 
 ---
 
 ## Featured projects (examples)
-> Replace these placeholders with the actual repo names and one-line descriptions from your `https://github.com/coraxgs` account.
 
-- **GAP (Green Automated Process)** — a modular automation stack for irrigation, nutrient control and energy optimisation.
+### Proprietary Solutions
+- **GAP (Green Automated Process)** — our flagship modular automation stack for irrigation, nutrient control and energy optimisation (commercial license).
+- **GAPbot** — advanced AI-powered automation companion for GAP systems with machine learning capabilities (commercial license).
+
+### Open Source Projects  
+> These are examples of our open-source contributions available on GitHub:
+
 - **CryptoP_AI_TA_Strategy** — hybrid trading strategy combining technical analysis with AI predictions for algorithmic trading (Freqtrade).
 - **CoraxHexa** — hexapod robotics platform with on-device vision for plant-health monitoring.
 - **PlantWatcher** — lightweight PlantCV-based image classification + MudPi integration for garden notifications.

@@ -1,7 +1,7 @@
 {
   "name": "Corax CoLAB - Future-Forward Innovation",
   "short_name": "Corax CoLAB",
-  "description": "Oberoende forsknings- och utvecklingsstudio som bygger praktiska open source-lösningar inom AI, automation, Web3 och blockchain-teknik.",
+  "description": "Oberoende forsknings- och utvecklingsstudio som bygger praktiska lösningar inom AI, automation, Web3 och blockchain-teknik. Både open source-projekt och avancerade proprietära system.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0a0a",
