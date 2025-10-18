@@ -365,7 +365,7 @@ nav.scrolled {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 120px; /* Much larger margin to push content well below navbar */
+  margin-top: 150px; /* Extra 30px (~1cm) to push content further down */
 }
 
 .hero-logo {
@@ -1219,7 +1219,7 @@ footer::before {
   }
   
   .hero-content {
-    margin-top: 80px; /* Sufficient margin on mobile to clear navbar */
+    margin-top: 100px; /* Extra margin on mobile for better clearance */
   }
   
   .feature-illustration {
