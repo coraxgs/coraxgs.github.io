@@ -3,169 +3,303 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Corax CoLAB – AI, IT, Web3 & Blockchain Showcase</title>
-  <meta name="description" content="Corax CoLAB – Innovation with AI, Web3 and Blockchain. Explore our open source-applications and other projects on GitHub.">
+  <title>Corax CoLAB – Future-Forward Innovation in AI, Web3 & Blockchain</title>
+  <meta name="description" content="Corax CoLAB är en oberoende forsknings- och utvecklingsstudio som bygger praktiska open source-lösningar inom AI, automation, Web3 och blockchain-teknik för en hållbar framtid.">
   <meta name="author" content="Corax CoLAB">
+  <meta name="keywords" content="AI, Machine Learning, Web3, Blockchain, Automation, GreenTech, Open Source, Cardano, Polkadot, Smart Contracts, Robotics">
   
   <!-- Open Graph Meta -->
-  <meta property="og:title" content="Corax CoLAB – AI, Web3 & Blockchain Showcase">
-  <meta property="og:description" content="Explore our open source-applications and other projects on GitHub.">
+  <meta property="og:title" content="Corax CoLAB – Future-Forward Innovation in AI, Web3 & Blockchain">
+  <meta property="og:description" content="Oberoende forsknings- och utvecklingsstudio som bygger praktiska open source-lösningar inom AI, automation och blockchain-teknik.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://coraxgs.github.io">
   <meta property="og:image" content="https://coraxcolab.coraxgardening.se/logo.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Corax CoLAB – AI, Web3 & Blockchain Showcase">
-  <meta name="twitter:description" content="Open source-projects in the fields of AI, Web3 and Blockchain.">
+  <meta name="twitter:title" content="Corax CoLAB – Future-Forward Innovation">
+  <meta name="twitter:description" content="Praktiska open source-lösningar inom AI, automation, Web3 och blockchain.">
   <meta name="twitter:image" content="https://coraxcolab.coraxgardening.se/logo.png">
-
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🔬%3C/text%3E%3C/svg%3E">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#00ffcc">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Corax CoLAB">
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Corax CoLAB",
+    "description": "Oberoende forsknings- och utvecklingsstudio som bygger praktiska open source-lösningar inom AI, automation, Web3 och blockchain-teknik för en hållbar framtid.",
+    "url": "https://coraxgs.github.io",
+    "sameAs": [
+      "https://github.com/coraxgs",
+      "https://coraxcolab.coraxgardening.se"
+    ],
+    "foundingDate": "2024",
+    "areaServed": "SE",
+    "knowsAbout": ["AI", "Machine Learning", "Web3", "Blockchain", "Automation", "GreenTech", "Open Source"],
+    "memberOf": {
+      "@type": "Organization",
+      "name": "Open Source Community"
+    }
+  }
+  </script>
+  
+  <!-- Analytics (Plausible - Privacy-friendly) -->
+  <script defer data-domain="coraxgs.github.io" src="https://plausible.io/js/script.js"></script>
+  
+  <!-- External CSS -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Inline Critical CSS for above-the-fold content -->
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #0d0d0d;
-      color: #e0e0e0;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
+    /* Critical CSS for immediate rendering - only essential above-the-fold styles */
+    body { 
+      font-family: 'Inter', -apple-system, sans-serif; 
+      background: #0a0a0a; 
+      color: #fff; 
+      margin: 0; 
+      line-height: 1.7;
+      overflow-x: hidden;
     }
-    header {
-      background: linear-gradient(90deg, #1a1a40, #0f3460);
-      padding: 2rem;
-      text-align: center;
-      border-bottom: 2px solid #00ffcc;
+    nav { 
+      position: fixed; 
+      top: 0; 
+      width: 100%; 
+      background: rgba(10,10,10,0.95); 
+      z-index: 1000; 
+      backdrop-filter: blur(20px);
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(0, 255, 204, 0.2);
     }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      color: #00ffcc;
+    .hero { 
+      min-height: 100vh; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      text-align: center; 
+      padding: 0 2rem;
     }
-    header p {
-      margin-top: 0.5rem;
-      font-size: 1.2rem;
-      color: #cccccc;
+    .nav-container { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      padding: 0 2rem; 
     }
-    main {
-      max-width: 1200px;
-      margin: auto;
-      padding: 2rem;
+    .logo { 
+      font-size: 1.5rem; 
+      font-weight: 700; 
+      background: linear-gradient(135deg, #00ffcc, #0066ff);
+      -webkit-background-clip: text; 
+      background-clip: text;
+      -webkit-text-fill-color: transparent; 
     }
-    h2 {
-      text-align: center;
-      color: #00ffcc;
-      margin-bottom: 1.5rem;
-    }
-    .repo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .repo-card {
-      background-color: #1a1a1a;
-      border: 1px solid #00ffcc33;
-      border-radius: 10px;
-      padding: 1.5rem;
-      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    .repo-card:hover {
-      transform: translateY(-5px);
-      border-color: #00ffcc;
-      box-shadow: 0px 0px 15px #00ffcc44;
-    }
-    .repo-card h3 {
-      margin-top: 0;
-      color: #00ffcc;
-    }
-    .repo-card p {
-      font-size: 0.95rem;
-      color: #cccccc;
-    }
-    .tags {
-      margin-top: 0.5rem;
-    }
-    .tag {
-      display: inline-block;
-      background-color: #0f3460;
-      color: #00ffcc;
-      padding: 0.2rem 0.5rem;
-      margin: 0.2rem;
-      border-radius: 5px;
-      font-size: 0.8rem;
-    }
-    .no-repos {
-      text-align: center;
-      font-size: 1rem;
-      color: #aaaaaa;
-      margin-top: 2rem;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      border-top: 1px solid #00ffcc33;
-      font-size: 0.9rem;
-      color: #777;
+    .mobile-menu-btn { display: none; }
+    @media (max-width: 768px) { 
+      .nav-links { display: none; } 
+      .mobile-menu-btn { display: block; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; padding: 0.5rem; } 
     }
   </style>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="preload" href="app.js" as="script">
 </head>
 <body>
-  <header>
-    <h1>Corax CoLAB</h1>
-    <p>AI, Web3 & Blockchain – Open Source Innovation</p>
-  </header>
-  <main>
-    <section>
-      <h2>Who are we?</h2>
-      <p>Corax CoLAB is an independent research & engineering studio focused on building open-source solutions at the intersection of AI, IT, Web3 and Blockchain. We design, prototype and ship pragmatic software and hardware integrations that enable sustainable automation, decentralized systems, and developer-friendly tooling.</p>
-    </section>
-    <section>
-      <h2>Our Applications</h2>
-      <div id="repo-list" class="repo-grid"></div>
-      <div id="no-repos" class="no-repos" style="display:none;">No projects were found.</div>
-    </section>
-  </main>
+  <div class="background-animation"></div>
+  
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <button class="logo" onclick="scrollToTop()" onkeydown="handleLogoKeydown(event)" aria-label="Gå till toppen av sidan">🔬 Corax CoLAB</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">Om oss</a></li>
+        <li><a href="#expertise">Expertområden</a></li>
+        <li><a href="#projects">Projekt</a></li>
+        <li><a href="#contact">Kontakt</a></li>
+        <li><button id="theme-toggle" class="theme-toggle" title="Växla tema" aria-label="Växla mellan mörkt och ljust tema">🌙</button></li>
+      </ul>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Öppna navigeringsmeny">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+      <div class="mobile-nav-content">
+        <a href="#about" onclick="closeMobileMenu()">Om oss</a>
+        <a href="#expertise" onclick="closeMobileMenu()">Expertområden</a>
+        <a href="#projects" onclick="closeMobileMenu()">Projekt</a>
+        <a href="#contact" onclick="closeMobileMenu()">Kontakt</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Bygger framtidens teknologi</h1>
+      <p class="hero-subtitle">AI • Web3 • Blockchain • Automation</p>
+      <p class="hero-description">
+        Corax CoLAB är en oberoende forsknings- och utvecklingsstudio som skapar praktiska open source-lösningar 
+        inom AI, automation, Web3 och blockchain. Vi designar, prototypar och levererar hållbara system som 
+        gör avancerad teknik tillgänglig för verkliga problem.
+      </p>
+      <a href="#projects" class="cta-button">
+        🚀 Utforska våra projekt
+      </a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2 class="section-title">Vem är vi?</h2>
+    <p class="section-subtitle">
+      Vi är innovatörer, forskare och ingenjörer som tror på kraften i öppen källkod och decentraliserade system. 
+      Vår mission är att accelerera adoption av ansvarsfull automation och decentralisering genom högkvalitativa, 
+      granskningsbara och resurseffektiva lösningar.
+    </p>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🤖</span>
+        <h3>AI & Machine Learning</h3>
+        <p>Edge-vänliga modeller och pipelines för datorseende, prediktiv kontroll och resursoptimering. 
+        Lågenergi-inferens på Raspberry Pi och liknande hårdvara.</p>
+      </div>
+      
+      <div class="feature-card">
+        <span class="feature-icon">🌱</span>
+        <h3>Automation & GreenTech</h3>
+        <p>System och kontroller för trädgårdar, småskaligt jordbruk och industriella processer som 
+        minskar energi-, vatten- och näringsanvändning.</p>
+      </div>
+      
+      <div class="feature-card">
+        <span class="feature-icon">⛓️</span>
+        <h3>Web3 & Blockchain</h3>
+        <p>Decentraliserade applikationer, smarta kontrakt, verktyg och integrationslager för 
+        förtroendeminimerade tjänster och tokeniserade incitament.</p>
+      </div>
+      
+      <div class="feature-card">
+        <span class="feature-icon">🛠️</span>
+        <h3>Developer Tooling</h3>
+        <p>CLI-verktyg, dashboards, deployment-skript och CI/CD-mönster som gör det enklare 
+        att köra reproducerbara system och noder.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section id="expertise">
+    <h2 class="section-title">Våra värdegrund</h2>
+    <p class="section-subtitle">
+      Vi leds av tydliga principer som formar allt vi gör
+    </p>
+    
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-number">100%</span>
+        <div class="stat-label">Open Source First</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">♻️</span>
+        <div class="stat-label">Resurseffektivitet</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">🔒</span>
+        <div class="stat-label">Integritet & Säkerhet</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">🤝</span>
+        <div class="stat-label">Interoperabilitet</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2 class="section-title">Våra Projekt</h2>
+    <p class="section-subtitle">
+      Utforska våra senaste open source-bidrag inom AI, automation och blockchain-teknik
+    </p>
+    
+    <div id="loading" class="loading" style="display: block;">
+      <div class="spinner"></div>
+      <span>Laddar projekt...</span>
+    </div>
+    
+    <div id="projects-grid" class="projects-grid" style="display: none;"></div>
+    
+    <div id="error-message" class="error-message" style="display: none;">
+      <h3>⚠️ Kunde inte ladda projekt</h3>
+      <p>Det uppstod ett problem vid hämtning av våra GitHub-repositorier. Besök vår 
+      <a href="https://github.com/coraxgs" target="_blank" style="color: var(--primary-color);">GitHub-profil</a> 
+      direkt för att se alla projekt.</p>
+    </div>
+  </section>
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2 class="section-title">Kom i kontakt</h2>
+    <p class="section-subtitle">
+      Intresserad av samarbete eller har frågor om våra projekt? Tveka inte att höra av dig!
+    </p>
+    
+    <div class="features-grid" style="max-width: 800px; margin: 0 auto;">
+      <div class="feature-card">
+        <span class="feature-icon">💻</span>
+        <h3>GitHub</h3>
+        <p>Utforska vår kod, rapportera buggar och bidra till våra open source-projekt.</p>
+        <a href="https://github.com/coraxgs" target="_blank" class="project-link">
+          github.com/coraxgs →
+        </a>
+      </div>
+      
+      <div class="feature-card">
+        <span class="feature-icon">🌐</span>
+        <h3>Webbplats</h3>
+        <p>Besök vår huvudwebbplats för mer information om våra tjänster och expertområden.</p>
+        <a href="https://coraxcolab.coraxgardening.se" target="_blank" class="project-link">
+          coraxcolab.coraxgardening.se →
+        </a>
+      </div>
+    </div>
+  </section>
+
   <footer>
-    © <span id="year"></span> Corax CoLAB – Builds the future with AI and decentralized tech.
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="https://github.com/coraxgs" target="_blank">GitHub</a>
+        <a href="https://coraxcolab.coraxgardening.se" target="_blank">Webbplats</a>
+        <a href="#about">Om oss</a>
+        <a href="#projects">Projekt</a>
+      </div>
+      <p style="color: var(--text-muted); margin-top: 1rem;">
+        © <span id="year"></span> Corax CoLAB – Bygger framtiden med AI, automation och decentraliserad teknik.
+        <br>
+        <small>Alla projekt är släppta under open source-licenser för gemenskapens nytta.</small>
+      </p>
+    </div>
   </footer>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
 
-    async function fetchRepos() {
-      try {
-        const res = await fetch(
-          'https://api.github.com/users/coraxgs/repos?sort=updated',
-          { headers: { Accept: 'application/vnd.github.mercy-preview+json' } }
-        );
-        const repos = await res.json();
-        const container = document.getElementById('repo-list');
-        const noRepos = document.getElementById('no-repos');
-        container.innerHTML = '';
-
-        if (!Array.isArray(repos) || repos.length === 0) {
-          noRepos.style.display = 'block';
-          return;
-        }
-
-        repos.forEach(repo => {
-          const card = document.createElement('div');
-          card.className = 'repo-card';
-          card.innerHTML = `
-            <h3><a href="${repo.html_url}" target="_blank" style="color:#00ffcc; text-decoration:none;">${repo.name}</a></h3>
-            <p>${repo.description || 'Ingen beskrivning tillgänglig'}</p>
-            <div class="tags">
-              ${repo.language ? `<span class="tag">${repo.language}</span>` : ''}
-              ${repo.topics && repo.topics.length ? repo.topics.map(t => `<span class="tag">${t}</span>`).join('') : ''}
-            </div>
-          `;
-          container.appendChild(card);
-        });
-      } catch (error) {
-        console.error('Something went wrong when fetching repos:', error);
-        document.getElementById('no-repos').textContent = 'Could not load the projects.';
-        document.getElementById('no-repos').style.display = 'block';
-      }
-    }
-
-    fetchRepos();
-  </script>
+  <!-- Enhanced JavaScript Application -->
+  <script src="app.js" defer></script>
 </body>
 </html>

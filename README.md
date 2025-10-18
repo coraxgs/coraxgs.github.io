@@ -1,6 +1,114 @@
-# About Corax CoLAB
+# 🔬 Corax CoLAB - Showcase Website
 
-**Corax CoLAB** is an independent research & engineering studio focused on building open-source solutions at the intersection of **AI, IT, Web3 and Blockchain**. We design, prototype and ship pragmatic software and hardware integrations that enable sustainable automation, decentralized systems, and developer-friendly tooling.
+> **Future-Forward Innovation in AI, Web3 & Blockchain**
+
+A modern, responsive, and feature-rich showcase website for Corax CoLAB - an independent research & engineering studio focused on building open-source solutions at the intersection of **AI, IT, Web3 and Blockchain**.
+
+## 🚀 Live Site
+
+Visit: [https://coraxgs.github.io](https://coraxgs.github.io)
+
+## ✨ Features
+
+### 🎨 Modern Design & UX
+- **Futuristic dark theme** with gradient accents and glassmorphism effects
+- **Responsive design** that works perfectly on all devices
+- **Smooth animations** and micro-interactions throughout
+- **Light/dark theme toggle** for user preference
+- **Mobile-first navigation** with hamburger menu and overlay
+
+### 🚀 Performance & PWA
+- **Progressive Web App (PWA)** - installable on mobile devices
+- **Service Worker** for offline functionality and caching
+- **Critical CSS loading** for optimal performance
+- **Lazy loading** and intersection observers for smooth scrolling
+- **Preloaded resources** for faster initial load
+
+### 🔧 GitHub Integration
+- **Dynamic repository loading** from GitHub API
+- **Smart filtering** - excludes forks and prioritizes active repos
+- **Intelligent sorting** based on stars, activity, and content quality
+- **Language-specific colors** and technology tags
+- **Rate limiting and caching** for optimal API usage
+- **Comprehensive error handling** with fallback states
+
+### 📈 Analytics & Tracking  
+- **Privacy-friendly analytics** with Plausible integration
+- **Performance monitoring** and error tracking
+- **User interaction tracking** for continuous improvement
+- **PWA installation prompts** and usage analytics
+
+### 🌐 SEO & Accessibility
+- **Structured data** (JSON-LD) for better search engine understanding
+- **Comprehensive meta tags** for social media sharing
+- **Semantic HTML** structure for screen readers
+- **Keyboard navigation** support throughout
+- **Focus management** and ARIA labels
+- **Sitemap and robots.txt** for search engine optimization
+
+## 🛠 Tech Stack
+
+### Frontend
+- **HTML5** - Semantic structure with accessibility in mind
+- **CSS3** - Modern features including CSS Grid, Flexbox, and Custom Properties
+- **Vanilla JavaScript** - No frameworks, optimized for performance
+- **Web APIs** - Service Workers, Intersection Observer, Local Storage
+
+### Services & Integrations
+- **GitHub Pages** - Static hosting with HTTPS
+- **GitHub API** - Dynamic repository data
+- **Plausible Analytics** - Privacy-focused analytics
+- **Google Fonts** - Inter font family for modern typography
+
+### Performance Features
+- **Critical CSS inlining** for above-the-fold content
+- **Resource preloading** for faster navigation
+- **Image optimization** through SVG icons and data URIs
+- **Efficient caching** strategies via Service Worker
+
+## 📁 Project Structure
+
+```
+coraxgs.github.io/
+├── index.html          # Main HTML file with semantic structure
+├── styles.css          # Comprehensive CSS with modern features
+├── app.js             # Enhanced JavaScript application
+├── manifest.json      # PWA manifest for installation
+├── sw.js             # Service Worker for offline functionality
+├── robots.txt        # Search engine crawling instructions
+├── sitemap.xml       # Site structure for SEO
+└── README.md         # This documentation
+```
+
+## 🔧 Technical Features
+
+### GitHub API Integration
+```javascript
+class GitHubAPI {
+  // Smart caching with 5-minute TTL
+  // Rate limiting protection
+  // Comprehensive error handling
+  // Repository scoring algorithm
+}
+```
+
+### Performance Analytics
+```javascript
+const CoraxAnalytics = {
+  // Load time tracking
+  // Error monitoring  
+  // User interaction analytics
+  // Performance insights
+}
+```
+
+### PWA Capabilities
+- **Offline functionality** via Service Worker
+- **Install prompts** for mobile and desktop
+- **App-like experience** when installed
+- **Background sync** for future enhancements
+
+### About Corax CoLAB
 
 ---
 
