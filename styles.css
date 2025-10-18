@@ -329,10 +329,10 @@ nav.scrolled {
 .hero {
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Changed from center to flex-start */
   justify-content: center;
   text-align: center;
-  padding: 120px var(--spacing-md) var(--spacing-lg); /* Increased top padding to show full logo */
+  padding: 140px var(--spacing-md) var(--spacing-lg); /* Further increased top padding */
   position: relative;
   background: url('images/hero-bg.svg') center/cover no-repeat;
 }
@@ -362,10 +362,15 @@ nav.scrolled {
   max-width: 900px;
   z-index: 2;
   animation: fadeInUp 1s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px; /* Push content further down from navbar */
 }
 
 .hero-logo {
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  margin-top: var(--spacing-md);
   animation: fadeInUp 1s 0.2s ease-out both;
 }
 
@@ -1116,12 +1121,22 @@ footer::before {
   
   .hero {
     min-height: 80vh;
-    padding: 140px var(--spacing-sm) var(--spacing-xl); /* Further increased top padding for mobile */
+    padding: 120px var(--spacing-sm) var(--spacing-xl); /* Adjusted for mobile */
+    align-items: flex-start; /* Ensure top alignment on mobile too */
+  }
+  
+  .hero-content {
+    margin-top: 40px; /* Less margin on mobile */
   }
   
   .hero-logo-img {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
+  }
+  
+  .hero-logo {
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
   }
   
   .hero h1 {
@@ -1199,8 +1214,12 @@ footer::before {
   }
   
   .hero-logo-img {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
+  }
+  
+  .hero-content {
+    margin-top: 20px; /* Even less margin on small screens */
   }
   
   .feature-illustration {
