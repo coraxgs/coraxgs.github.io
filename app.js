@@ -13,10 +13,10 @@ const i18n = {
         contact: 'Kontakt'
       },
       hero: {
-        title: 'Bygger framtidens teknologi',
-        subtitle: 'AI • Web3 • Blockchain • Automation',
-        description: 'Corax CoLAB är en oberoende forsknings- och utvecklingsstudio som skapar praktiska lösningar inom AI, automation, Web3 och blockchain. Vi utvecklar både open source-projekt och avancerade proprietära system som GAP och GAPbot. Vi designar, prototypar och levererar hållbara system som gör avancerad teknik tillgänglig för verkliga problem.',
-        cta: '🚀 Utforska våra projekt'
+        title: 'The Catalyst for Transformation Towards a Sustainable Future',
+        subtitle: 'Decentralized Autonomy and Global Ecosystem Leadership',
+        description: 'Corax CoLAB is the architect behind cyber-physical systems that secure your future in an increasingly regulated and resource-constrained world. We unite advanced robotics (GAPbot) and industrial-grade Edge AI (GAP Platform).',
+        cta: 'Explore the GAP Platform'
       },
       about: {
         title: 'Vem är vi?',
@@ -79,10 +79,10 @@ const i18n = {
         contact: 'Contact'
       },
       hero: {
-        title: 'Building Future Technology',
-        subtitle: 'AI • Web3 • Blockchain • Automation',
-        description: 'Corax CoLAB is an independent research and development studio creating practical solutions in AI, automation, Web3, and blockchain. We develop both open source projects and advanced proprietary systems like GAP and GAPbot. We design, prototype, and deliver sustainable systems that make advanced technology accessible for real-world problems.',
-        cta: '🚀 Explore our projects'
+        title: 'The Catalyst for Transformation Towards a Sustainable Future',
+        subtitle: 'Decentralized Autonomy and Global Ecosystem Leadership',
+        description: 'Corax CoLAB is the architect behind cyber-physical systems that secure your future in an increasingly regulated and resource-constrained world. We unite advanced robotics (GAPbot) and industrial-grade Edge AI (GAP Platform).',
+        cta: 'Explore the GAP Platform'
       },
       about: {
         title: 'Who are we?',

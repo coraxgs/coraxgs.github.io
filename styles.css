@@ -1,18 +1,18 @@
 /* Corax CoLAB Styles v2.0 */
 :root {
-  --primary-color: #00ffcc;
-  --secondary-color: #0066ff;
+  --primary-color: #00FFC2;
+  --secondary-color: #1A73E8;
   --accent-color: #ff6b35;
   --success-color: #00d4aa;
   --warning-color: #ffb347;
   --error-color: #ff6b6b;
-  --dark-bg: #0a0a0a;
-  --card-bg: #151515;
-  --glass-bg: rgba(21, 21, 21, 0.8);
-  --text-primary: #ffffff;
-  --text-secondary: #b3b3b3;
-  --text-muted: #808080;
-  --gradient-primary: linear-gradient(135deg, #00ffcc, #0066ff);
+  --dark-bg: #050505;
+  --card-bg: #111111;
+  --glass-bg: rgba(17, 17, 17, 0.85);
+  --text-primary: #F8F9FA;
+  --text-secondary: #E8EAED;
+  --text-muted: #9AA0A6;
+  --gradient-primary: linear-gradient(135deg, #00FFC2, #1A73E8);
   --gradient-secondary: linear-gradient(135deg, #ff6b35, #ffb347);
   --gradient-dark: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
   --shadow-glow: 0 0 30px rgba(0, 255, 204, 0.3);
@@ -1364,4 +1364,161 @@ footer::before {
     border: 1px solid #ccc !important;
     box-shadow: none !important;
   }
+}
+/* Custom additions for Deep Tech Polish */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px var(--spacing-md) var(--spacing-lg);
+    position: relative;
+    background: #000;
+    overflow: hidden;
+}
+
+.hero-bg-video-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, #0d1b2a 0%, #000 70%);
+    z-index: 0;
+    opacity: 0.8;
+}
+
+.hero-bg-video-placeholder::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent);
+    background-size: 50px 50px;
+    opacity: 0.2;
+    z-index: 1;
+}
+
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    background: none; /* override gradient */
+    -webkit-text-fill-color: initial;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.hero-description {
+    font-size: 1.15rem;
+    color: #a0a0a0;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-ctas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.primary-cta {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+}
+
+.primary-cta:hover {
+    background: #e0e0e0;
+    color: #000;
+    box-shadow: 0 6px 20px rgba(255,255,255,0.3);
+}
+
+.primary-cta::before {
+    display: none;
+}
+
+.secondary-cta {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.secondary-cta:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: #fff;
+}
+
+/* Feature cards tech polish */
+.tech-icon-wrapper {
+    font-size: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background: radial-gradient(circle at center, rgba(0, 255, 194, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.product-card {
+    text-align: left;
+    align-items: flex-start;
+    border-top: 3px solid var(--primary-color);
+}
+.product-card h3 {
+    font-size: 1.8rem;
+}
+
+/* Base typography refinements */
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    letter-spacing: -0.01em;
+}
+
+.section-title {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #fff;
+}
+.section-title::after {
+    background: var(--primary-color);
+}
+
+/* Remove gradient border from feature cards for cleaner look */
+.feature-card::before {
+    display: none;
+}
+.feature-card {
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(17,17,17,0.6);
 }

@@ -60,56 +60,7 @@
   <link rel="stylesheet" href="styles.css">
   
   <!-- Inline Critical CSS for above-the-fold content -->
-  <style>
-    /* Critical CSS for immediate rendering - only essential above-the-fold styles */
-    body { 
-      font-family: 'Inter', -apple-system, sans-serif; 
-      background: #0a0a0a; 
-      color: #fff; 
-      margin: 0; 
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-    nav { 
-      position: fixed; 
-      top: 0; 
-      width: 100%; 
-      background: rgba(10,10,10,0.95); 
-      z-index: 1000; 
-      backdrop-filter: blur(20px);
-      padding: 1rem 0;
-      border-bottom: 1px solid rgba(0, 255, 204, 0.2);
-    }
-    .hero { 
-      min-height: 100vh; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      text-align: center; 
-      padding: 0 2rem;
-    }
-    .nav-container { 
-      max-width: 1200px; 
-      margin: 0 auto; 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      padding: 0 2rem; 
-    }
-    .logo { 
-      font-size: 1.5rem; 
-      font-weight: 700; 
-      background: linear-gradient(135deg, #00ffcc, #0066ff);
-      -webkit-background-clip: text; 
-      background-clip: text;
-      -webkit-text-fill-color: transparent; 
-    }
-    .mobile-menu-btn { display: none; }
-    @media (max-width: 768px) { 
-      .nav-links { display: none; } 
-      .mobile-menu-btn { display: block; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; padding: 0.5rem; } 
-    }
-  </style>
+
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -159,73 +110,81 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero">
+    <section class="hero">
+    <div class="hero-bg-video-placeholder"></div>
     <div class="hero-bg-overlay"></div>
     <div class="hero-content">
-      <div class="hero-logo">
-        <img src="images/logo.png" alt="Corax CoLAB Logo" class="hero-logo-img">
-      </div>
-      <h1 data-i18n="hero.title">Bygger framtidens teknologi</h1>
-      <p class="hero-subtitle" data-i18n="hero.subtitle">AI • Web3 • Blockchain • Automation</p>
+      <h1 data-i18n="hero.title">The Catalyst for Transformation Towards a Sustainable Future</h1>
+      <p class="hero-subtitle" data-i18n="hero.subtitle">Decentralized Autonomy and Global Ecosystem Leadership</p>
       <p class="hero-description" data-i18n="hero.description">
-        Corax CoLAB är en oberoende forsknings- och utvecklingsstudio som skapar praktiska lösningar 
-        inom AI, automation, Web3 och blockchain. Vi utvecklar både open source-projekt och avancerade 
-        proprietära system som GAP och GAPbot. Vi designar, prototypar och levererar hållbara system som 
-        gör avancerad teknik tillgänglig för verkliga problem.
+        Corax CoLAB is the architect behind cyber-physical systems that secure your future in an increasingly regulated and resource-constrained world. We unite advanced robotics (GAPbot) and industrial-grade Edge AI (GAP Platform).
       </p>
-      <a href="#projects" class="cta-button" data-i18n="hero.cta">
-        🚀 Utforska våra projekt
-      </a>
+      <div class="hero-ctas">
+        <a href="#projects" class="cta-button primary-cta" data-i18n="hero.cta">
+          Explore the GAP Platform
+        </a>
+        <a href="#about" class="cta-button secondary-cta">
+          Learn More
+        </a>
+      </div>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about">
-    <h2 class="section-title" data-i18n="about.title">Vem är vi?</h2>
-    <p class="section-subtitle" data-i18n="about.description">
-      Vi är innovatörer, forskare och ingenjörer som utvecklar både open source-projekt och proprietära lösningar. 
-      Vår mission är att accelerera adoption av ansvarsfull automation och decentralisering genom högkvalitativa, 
-      granskningsbara och resurseffektiva system. Vi bidrar aktivt till open source-communityn samtidigt som vi 
-      utvecklar kraftfulla proprietära verktyg som GAP och GAPbot för avancerade användningsfall.
+    <section id="about">
+    <h2 class="section-title">The Corax Commitment</h2>
+    <p class="section-subtitle">
+      Our strategic approach is based on a 'bottom-up' perspective: true global leadership is achieved by solving customers' most pressing challenges – from energy savings to mitigating fine risks.
     </p>
     
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-illustration">
-          <img src="images/ai-illustration.svg" alt="AI & Machine Learning Illustration" class="feature-img">
+          <div class="tech-icon-wrapper">🌍</div>
         </div>
-        <span class="feature-icon">🤖</span>
-        <h3 data-i18n="features.ai.title">AI & Machine Learning</h3>
-        <p data-i18n="features.ai.description">Edge-vänliga modeller och pipelines för datorseende, prediktiv kontroll och resursoptimering. 
-        Lågenergi-inferens på Raspberry Pi och liknande hårdvara.</p>
+        <h3>Sustainability</h3>
+        <p>Embedded in the GAP system's DNA. From energy-efficient AI solutions to Digital Battery Passports, directly supporting CSRD/ESRS reporting.</p>
       </div>
       
       <div class="feature-card">
         <div class="feature-illustration">
-          <img src="images/automation-illustration.svg" alt="Automation & GreenTech Illustration" class="feature-img">
+          <div class="tech-icon-wrapper">⚡</div>
         </div>
-        <span class="feature-icon">🌱</span>
-        <h3 data-i18n="features.automation.title">Automation & GreenTech</h3>
-        <p data-i18n="features.automation.description">System och kontroller för trädgårdar, småskaligt jordbruk och industriella processer som 
-        minskar energi-, vatten- och näringsanvändning.</p>
+        <h3>Innovation</h3>
+        <p>Continuous development of groundbreaking technologies like Post-Quantum Cryptography (PQC) and Self-Healing Code.</p>
       </div>
       
       <div class="feature-card">
         <div class="feature-illustration">
-          <img src="images/blockchain-illustration.svg" alt="Web3 & Blockchain Illustration" class="feature-img">
+          <div class="tech-icon-wrapper">🔒</div>
         </div>
-        <span class="feature-icon">⛓️</span>
-        <h3 data-i18n="features.blockchain.title">Web3 & Blockchain</h3>
-        <p data-i18n="features.blockchain.description">Decentraliserade applikationer, smarta kontrakt, verktyg och integrationslager för 
-        förtroendeminimerade tjänster och tokeniserade incitament.</p>
+        <h3>Ethics & Responsibility</h3>
+        <p>Strict handling of sensitive data. All biometric data processing occurs locally on the Edge device, guaranteeing GDPR compliance.</p>
       </div>
-      
-      <div class="feature-card">
-        <span class="feature-icon">🛠️</span>
-        <h3>Developer Tooling</h3>
-        <p>CLI-verktyg, dashboards, deployment-skript och CI/CD-mönster som gör det enklare 
-        att köra reproducerbara system och noder.</p>
-      </div>
+    </div>
+
+    <div style="margin-top: 4rem;">
+        <h2 class="section-title">🤖 Meet GAP and GAPbot</h2>
+        <div class="grid-2" style="margin-top: 2rem;">
+            <div class="feature-card product-card">
+                <h3>GAP Platform</h3>
+                <p>The industrial analysis and control center. A hybrid cloud/edge platform orchestrating fleets of robots for intelligent resource optimization.</p>
+                <ul style="text-align: left; margin-top: 1rem; color: var(--text-secondary); padding-left: 1.5rem;">
+                    <li>Hybrid Architecture (Flask/FastAPI)</li>
+                    <li>Explainable AI (XAI)</li>
+                    <li>Quantum-Resistant Encryption</li>
+                </ul>
+            </div>
+            <div class="feature-card product-card">
+                <h3>GAPbot</h3>
+                <p>Autonomous hexapod robotics for optimization, security, and analysis. Equipped with 'Sun Bathing Mode' for extreme endurance.</p>
+                <ul style="text-align: left; margin-top: 1rem; color: var(--text-secondary); padding-left: 1.5rem;">
+                    <li>Neuro-Symbolic Hybrid AI</li>
+                    <li>Hexapod Kinematics</li>
+                    <li>Self-Healing Code</li>
+                </ul>
+            </div>
+        </div>
     </div>
   </section>
 
