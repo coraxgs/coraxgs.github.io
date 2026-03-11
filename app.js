@@ -1,206 +1,5 @@
 // Corax CoLAB Enhanced Website JavaScript v2.0
 
-// Internationalization (i18n) System
-const i18n = {
-  currentLanguage: 'sv',
-  
-  translations: {
-    sv: {
-      nav: {
-        about: 'Om oss',
-        expertise: 'Expertområden', 
-        projects: 'Projekt',
-        contact: 'Kontakt'
-      },
-      hero: {
-        title: 'The Catalyst for Transformation Towards a Sustainable Future',
-        subtitle: 'Decentralized Autonomy and Global Ecosystem Leadership',
-        description: 'Corax CoLAB is the architect behind cyber-physical systems that secure your future in an increasingly regulated and resource-constrained world. We unite advanced robotics (GAPbot) and industrial-grade Edge AI (GAP Platform).',
-        cta: 'Explore the GAP Platform'
-      },
-      about: {
-        title: 'Vem är vi?',
-        description: 'Vi är innovatörer, forskare och ingenjörer som utvecklar både open source-projekt och proprietära lösningar. Vår mission är att accelerera adoption av ansvarsfull automation och decentralisering genom högkvalitativa, granskningsbara och resurseffektiva system. Vi bidrar aktivt till open source-communityn samtidigt som vi utvecklar kraftfulla proprietära verktyg som GAP och GAPbot för avancerade användningsfall.'
-      },
-      features: {
-        ai: {
-          title: 'AI & Machine Learning',
-          description: 'Edge-vänliga modeller och pipelines för datorseende, prediktiv kontroll och resursoptimering. Lågenergi-inferens på Raspberry Pi och liknande hårdvara.'
-        },
-        automation: {
-          title: 'Automation & GreenTech',
-          description: 'System och kontroller för trädgårdar, småskaligt jordbruk och industriella processer som minskar energi-, vatten- och näringsanvändning.'
-        },
-        blockchain: {
-          title: 'Web3 & Blockchain',
-          description: 'Decentraliserade applikationer, smarta kontrakt, verktyg och integrationslager för förtroendeminimerade tjänster och tokeniserade incitament.'
-        }
-      },
-      values: {
-        title: 'Våra värdegrund',
-        description: 'Vi leds av tydliga principer som formar allt vi gör',
-        opensource: 'Open Source + Proprietär',
-        efficiency: 'Resurseffektivitet',
-        security: 'Integritet & Säkerhet',
-        interoperability: 'Interoperabilitet'
-      },
-      projects: {
-        title: 'Våra Projekt',
-        description: 'Utforska våra senaste projekt inom AI, automation och blockchain-teknik - både open source-bidrag och proprietära lösningar',
-        loading: 'Laddar projekt...',
-        error: {
-          title: '⚠️ Kunde inte ladda projekt',
-          description: 'Det uppstod ett problem vid hämtning av våra GitHub-repositorier. Besök vår',
-          link: 'GitHub-profil'
-        }
-      },
-      contact: {
-        title: 'Kom i kontakt',
-        description: 'Intresserad av samarbete eller har frågor om våra projekt? Tveka inte att höra av dig!',
-        github: {
-          title: 'GitHub',
-          description: 'Utforska vår kod, rapportera buggar och bidra till våra open source-projekt.'
-        },
-        website: {
-          title: 'Webbplats',
-          description: 'Besök vår huvudwebbplats för mer information om våra tjänster och expertområden.'
-        }
-      },
-      footer: {
-        tagline: 'Bygger framtiden med AI, automation och decentraliserad teknik.',
-        description: 'Vi utvecklar både open source-projekt och avancerade proprietära system för olika användningsområden.'
-      }
-    },
-    en: {
-      nav: {
-        about: 'About',
-        expertise: 'Expertise',
-        projects: 'Projects', 
-        contact: 'Contact'
-      },
-      hero: {
-        title: 'The Catalyst for Transformation Towards a Sustainable Future',
-        subtitle: 'Decentralized Autonomy and Global Ecosystem Leadership',
-        description: 'Corax CoLAB is the architect behind cyber-physical systems that secure your future in an increasingly regulated and resource-constrained world. We unite advanced robotics (GAPbot) and industrial-grade Edge AI (GAP Platform).',
-        cta: 'Explore the GAP Platform'
-      },
-      about: {
-        title: 'Who are we?',
-        description: 'We are innovators, researchers, and engineers developing both open source projects and proprietary solutions. Our mission is to accelerate adoption of responsible automation and decentralization through high-quality, auditable, and resource-efficient systems. We actively contribute to the open source community while developing powerful proprietary tools like GAP and GAPbot for advanced use cases.'
-      },
-      features: {
-        ai: {
-          title: 'AI & Machine Learning',
-          description: 'Edge-friendly models and pipelines for computer vision, predictive control, and resource optimization. Low-energy inference on Raspberry Pi and similar hardware.'
-        },
-        automation: {
-          title: 'Automation & GreenTech',
-          description: 'Systems and controls for gardens, small-scale agriculture, and industrial processes that reduce energy, water, and nutrient usage.'
-        },
-        blockchain: {
-          title: 'Web3 & Blockchain',
-          description: 'Decentralized applications, smart contracts, tools, and integration layers for trust-minimized services and tokenized incentives.'
-        }
-      },
-      values: {
-        title: 'Our Values',
-        description: 'We are guided by clear principles that shape everything we do',
-        opensource: 'Open Source + Proprietary',
-        efficiency: 'Resource Efficiency',
-        security: 'Privacy & Security', 
-        interoperability: 'Interoperability'
-      },
-      projects: {
-        title: 'Our Projects',
-        description: 'Explore our latest projects in AI, automation, and blockchain technology - both open source contributions and proprietary solutions',
-        loading: 'Loading projects...',
-        error: {
-          title: '⚠️ Failed to load projects',
-          description: 'There was a problem fetching our GitHub repositories. Visit our',
-          link: 'GitHub profile'
-        }
-      },
-      contact: {
-        title: 'Get in touch',
-        description: 'Interested in collaboration or have questions about our projects? Don\'t hesitate to reach out!',
-        github: {
-          title: 'GitHub',
-          description: 'Explore our code, report bugs, and contribute to our open source projects.'
-        },
-        website: {
-          title: 'Website', 
-          description: 'Visit our main website for more information about our services and expertise areas.'
-        }
-      },
-      footer: {
-        tagline: 'Building the future with AI, automation, and decentralized technology.',
-        description: 'We develop both open source projects and advanced proprietary systems for various use cases.'
-      }
-    }
-  },
-
-  init() {
-    // Load saved language preference
-    this.currentLanguage = localStorage.getItem('corax-language') || 'sv';
-    document.documentElement.lang = this.currentLanguage;
-    this.updateLanguageToggle();
-    this.translatePage();
-    this.setupLanguageToggle();
-  },
-
-  translatePage() {
-    const elements = document.querySelectorAll('[data-i18n]');
-    elements.forEach(element => {
-      const key = element.getAttribute('data-i18n');
-      const translation = this.getTranslation(key);
-      if (translation) {
-        element.textContent = translation;
-      }
-    });
-  },
-
-  getTranslation(key) {
-    const keys = key.split('.');
-    let value = this.translations[this.currentLanguage];
-    
-    for (const k of keys) {
-      if (value && value[k]) {
-        value = value[k];
-      } else {
-        console.warn(`Translation missing for key: ${key} in language: ${this.currentLanguage}`);
-        return null;
-      }
-    }
-    return value;
-  },
-
-  toggleLanguage() {
-    this.currentLanguage = this.currentLanguage === 'sv' ? 'en' : 'sv';
-    document.documentElement.lang = this.currentLanguage;
-    localStorage.setItem('corax-language', this.currentLanguage);
-    this.updateLanguageToggle();
-    this.translatePage();
-  },
-
-  updateLanguageToggle() {
-    const toggles = document.querySelectorAll('.language-toggle');
-    const flag = this.currentLanguage === 'sv' ? '🇸🇪' : '🇺🇸';
-    const code = this.currentLanguage.toUpperCase();
-    
-    toggles.forEach(toggle => {
-      toggle.innerHTML = `🌐 ${code}`;
-      toggle.title = this.currentLanguage === 'sv' ? 'Switch to English' : 'Byt till svenska';
-    });
-  },
-
-  setupLanguageToggle() {
-    const toggles = document.querySelectorAll('.language-toggle');
-    toggles.forEach(toggle => {
-      toggle.addEventListener('click', () => this.toggleLanguage());
-    });
-  }
-};
-
 // Performance and Analytics
 const CoraxAnalytics = {
   startTime: performance.now(),
@@ -364,16 +163,16 @@ class ProjectRenderer {
     this.container.style.display = 'none';
     this.errorContainer.style.display = 'block';
     
-    const errorTitle = i18n.getTranslation('projects.error.title') || '⚠️ Kunde inte ladda projekt';
-    const errorDescription = i18n.getTranslation('projects.error.description') || 'Det uppstod ett problem vid hämtning av våra GitHub-repositorier. Besök vår';
-    const linkText = i18n.getTranslation('projects.error.link') || 'GitHub-profil';
+    const errorTitle = '⚠️ Could not load projects';
+    const errorDescription = 'There was a problem fetching our GitHub repositories. Visit our';
+    const linkText = 'GitHub profile';
     
     this.errorContainer.innerHTML = `
       <h3>${errorTitle}</h3>
       <p>${message}</p>
       <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">
         ${errorDescription} <a href="https://github.com/coraxgs" target="_blank" style="color: var(--primary-color);">${linkText}</a> 
-        ${i18n.currentLanguage === 'en' ? 'directly to see all projects.' : 'direkt för att se alla projekt.'}
+        directly to see all projects.
       </p>
     `;
   }
@@ -385,9 +184,7 @@ class ProjectRenderer {
     this.container.innerHTML = '';
     
     if (!repos || repos.length === 0) {
-      const noReposMessage = i18n.currentLanguage === 'en' 
-        ? 'No public repositories found.' 
-        : 'Inga offentliga repositorier hittades.';
+      const noReposMessage = 'No public repositories found.';
       this.showError(noReposMessage);
       return;
     }
@@ -550,7 +347,7 @@ class ProjectRenderer {
   
   formatDate(dateString) {
     const date = new Date(dateString);
-    return date.toLocaleDateString('sv-SE', { 
+    return date.toLocaleDateString('en-US', {
       year: 'numeric', 
       month: 'short', 
       day: 'numeric' 
@@ -753,9 +550,7 @@ class CoraxWebsite {
       
     } catch (error) {
       console.error('Failed to load projects:', error);
-      const errorMsg = i18n.currentLanguage === 'en' 
-        ? `There was a problem fetching our GitHub repositories: ${error.message}`
-        : `Det uppstod ett problem vid hämtning av våra GitHub-repositorier: ${error.message}`;
+      const errorMsg = `There was a problem fetching our GitHub repositories: ${error.message}`;
       this.projectRenderer.showError(errorMsg);
       
       if (window.plausible) {
@@ -886,9 +681,7 @@ class CoraxWebsite {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize internationalization first
-  i18n.init();
-  
+
   // Set current year
   const yearElement = document.getElementById('year');
   if (yearElement) {
