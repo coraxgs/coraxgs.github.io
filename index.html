@@ -66,6 +66,9 @@
 </head>
 <body>
   <div class="background-animation"></div>
+  <canvas id="neural-canvas"></canvas>
+  <div class="custom-cursor"></div>
+  <div class="custom-cursor-follower"></div>
   
   <!-- Navigation -->
   <nav id="navbar">
@@ -104,7 +107,18 @@
     <div class="hero-bg-video-placeholder"></div>
     <div class="hero-bg-overlay"></div>
     <div class="hero-content">
-      <h1>The Future of Autonomous Robotics, Edge AI, and Sustainable Ecosystems</h1>
+      <div class="terminal-boot-container">
+        <div class="terminal-header">
+          <div class="terminal-buttons">
+            <span class="terminal-btn close"></span>
+            <span class="terminal-btn min"></span>
+            <span class="terminal-btn max"></span>
+          </div>
+          <div class="terminal-title">corax_os_v2.0 -- bash</div>
+        </div>
+        <div class="terminal-body" id="terminal-body"></div>
+      </div>
+      <h1 class="glitch" data-text="The Future of Autonomous Robotics, Edge AI, and Sustainable Ecosystems">The Future of Autonomous Robotics, Edge AI, and Sustainable Ecosystems</h1>
       <p class="hero-subtitle">Decentralized Autonomy and Global Ecosystem Leadership</p>
       <p class="hero-description">
         We build AI-driven ecosystems that unite efficiency with responsibility. We are the architects behind cyber-physical systems that secure your future in an increasingly regulated world—creators of the GAP Platform and GAPbot.
@@ -128,7 +142,7 @@
     </p>
 
     <div class="grid-2" style="margin-top: 3rem;">
-        <div class="feature-card product-card">
+        <div class="feature-card product-card tilt-card">
             <h3>GAP Platform (The Brain)</h3>
             <p>The industrial analysis and control center, developed to handle the most complex business logic and real-time data streams. A hybrid cloud/edge platform orchestrating fleets of robots.</p>
             <ul style="text-align: left; margin-top: 1.5rem; color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.8;">
@@ -138,7 +152,7 @@
                 <li><strong>Digital Twin & 4D:</strong> Virtual copies for remote monitoring and Digital Risk Mitigation.</li>
             </ul>
         </div>
-        <div class="feature-card product-card">
+        <div class="feature-card product-card tilt-card">
             <h3>GAPbot (The Body)</h3>
             <p>Autonomous hexapod robotics for optimization, security, and analysis. Equipped with 'Sun Bathing Mode' for extreme endurance and superior accessibility in complex environments.</p>
             <ul style="text-align: left; margin-top: 1.5rem; color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.8;">
@@ -159,7 +173,7 @@
     </p>
     
     <div class="features-grid">
-      <div class="feature-card">
+      <div class="feature-card tilt-card">
         <div class="feature-illustration">
           <div class="tech-icon-wrapper">🧠</div>
         </div>
@@ -167,7 +181,7 @@
         <p>Combining industrial Edge AI for ultra-low latency perception with Generative AI for complex cognition and autonomous reasoning.</p>
       </div>
       
-      <div class="feature-card">
+      <div class="feature-card tilt-card">
         <div class="feature-illustration">
           <div class="tech-icon-wrapper">🕸️</div>
         </div>
@@ -175,7 +189,7 @@
         <p>Decentralized task allocation via CBBA (Consensus-Based Bundle Algorithm). Robots exchange information for conflict-free, coordinated work.</p>
       </div>
       
-      <div class="feature-card">
+      <div class="feature-card tilt-card">
         <div class="feature-illustration">
           <div class="tech-icon-wrapper">🔒</div>
         </div>
@@ -194,7 +208,7 @@
 
     <div class="projects-grid">
       <!-- Repo 1: GAPbot -->
-      <div class="project-card">
+      <div class="project-card tilt-card">
         <div class="project-header">
           <h3><a href="https://github.com/PelleNybe/CoraxCoLABs-GAP-GreenAutomatedPlatform---GAPbot" target="_blank" rel="noopener noreferrer">GAPbot Core</a></h3>
           <div class="project-stats">
@@ -217,7 +231,7 @@
       </div>
 
       <!-- Repo 2: Crypto MCP Server -->
-      <div class="project-card">
+      <div class="project-card tilt-card">
         <div class="project-header">
           <h3><a href="https://github.com/coraxgs/Crypto-MCP-Server---by-Corax-CoLAB" target="_blank" rel="noopener noreferrer">Crypto MCP Server</a></h3>
           <div class="project-stats">
@@ -240,7 +254,7 @@
       </div>
 
       <!-- Repo 3: PelleNybe Profile/Core -->
-      <div class="project-card">
+      <div class="project-card tilt-card">
         <div class="project-header">
           <h3><a href="https://github.com/PelleNybe/PelleNybe" target="_blank" rel="noopener noreferrer">Founder's Core Insights</a></h3>
           <div class="project-stats">
@@ -309,7 +323,7 @@
     </p>
     
     <div class="features-grid" style="max-width: 800px; margin: 0 auto;">
-      <div class="feature-card" style="padding: 2rem;">
+      <div class="feature-card tilt-card" style="padding: 2rem;">
         <span class="feature-icon">🌐</span>
         <h3>Main Website</h3>
         <p>Visit our primary domain for deep dives into our services, enterprise solutions, and booking a demo.</p>
@@ -318,7 +332,7 @@
         </a>
       </div>
       
-      <div class="feature-card" style="padding: 2rem;">
+      <div class="feature-card tilt-card" style="padding: 2rem;">
         <span class="feature-icon">✉️</span>
         <h3>Contact Us</h3>
         <p>Reach out directly for consultation regarding AI, Web3, Blockchain, and advanced robotics integrations.</p>

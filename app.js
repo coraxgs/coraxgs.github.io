@@ -695,3 +695,308 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Export for potential external use
 window.CoraxWebsite = CoraxWebsite;
+// ==========================================
+// 5 NEW WORLD CLASS FEATURES IMPLEMENTATION
+// ==========================================
+
+// Feature 1: Interactive Neural Network Canvas
+class NeuralNetwork {
+  constructor(canvasId) {
+    this.canvas = document.getElementById(canvasId);
+    if (!this.canvas) return;
+    this.ctx = this.canvas.getContext('2d');
+    this.particles = [];
+    this.numParticles = window.innerWidth < 768 ? 50 : 120;
+    this.mouse = { x: null, y: null, radius: 150 };
+
+    this.init();
+    this.animate();
+
+    window.addEventListener('resize', () => {
+      this.init();
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      this.mouse.x = e.x;
+      this.mouse.y = e.y;
+    });
+
+    window.addEventListener('mouseout', () => {
+      this.mouse.x = null;
+      this.mouse.y = null;
+    });
+  }
+
+  init() {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+    this.particles = [];
+    for (let i = 0; i < this.numParticles; i++) {
+      let x = Math.random() * this.canvas.width;
+      let y = Math.random() * this.canvas.height;
+      let size = Math.random() * 2 + 0.5;
+      let speedX = (Math.random() - 0.5) * 1.5;
+      let speedY = (Math.random() - 0.5) * 1.5;
+      this.particles.push(new Particle(x, y, speedX, speedY, size, this.ctx, this.canvas, this.mouse));
+    }
+  }
+
+  animate() {
+    requestAnimationFrame(this.animate.bind(this));
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    for (let i = 0; i < this.particles.length; i++) {
+      this.particles[i].update();
+      this.particles[i].draw();
+
+      // Connect particles
+      for (let j = i; j < this.particles.length; j++) {
+        let dx = this.particles[i].x - this.particles[j].x;
+        let dy = this.particles[i].y - this.particles[j].y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < 120) {
+          this.ctx.beginPath();
+          this.ctx.strokeStyle = `rgba(0, 255, 204, ${1 - distance / 120})`;
+          this.ctx.lineWidth = 0.5;
+          this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
+          this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
+          this.ctx.stroke();
+          this.ctx.closePath();
+        }
+      }
+    }
+  }
+}
+
+class Particle {
+  constructor(x, y, speedX, speedY, size, ctx, canvas, mouse) {
+    this.x = x;
+    this.y = y;
+    this.speedX = speedX;
+    this.speedY = speedY;
+    this.size = size;
+    this.ctx = ctx;
+    this.canvas = canvas;
+    this.mouse = mouse;
+    this.baseX = x;
+    this.baseY = y;
+    this.density = (Math.random() * 30) + 1;
+  }
+
+  draw() {
+    this.ctx.beginPath();
+    this.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    this.ctx.fillStyle = '#00ffcc';
+    this.ctx.fill();
+  }
+
+  update() {
+    // Collision detection
+    if (this.x > this.canvas.width || this.x < 0) this.speedX = -this.speedX;
+    if (this.y > this.canvas.height || this.y < 0) this.speedY = -this.speedY;
+
+    // Movement
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    // Mouse interaction (Swarm Intelligence effect)
+    if (this.mouse.x != null && this.mouse.y != null) {
+      let dx = this.mouse.x - this.x;
+      let dy = this.mouse.y - this.y;
+      let distance = Math.sqrt(dx * dx + dy * dy);
+      let forceDirectionX = dx / distance;
+      let forceDirectionY = dy / distance;
+      let maxDistance = this.mouse.radius;
+      let force = (maxDistance - distance) / maxDistance;
+      let directionX = forceDirectionX * force * this.density;
+      let directionY = forceDirectionY * force * this.density;
+
+      if (distance < this.mouse.radius) {
+        this.x -= directionX;
+        this.y -= directionY;
+      }
+    }
+  }
+}
+
+// Feature 2: Custom Cursor
+class CustomCursor {
+  constructor() {
+    this.cursor = document.querySelector('.custom-cursor');
+    this.follower = document.querySelector('.custom-cursor-follower');
+    if (!this.cursor || !this.follower) return;
+
+    // Check if device supports hover (not a mobile device usually)
+    if (window.matchMedia("(any-hover: none)").matches) {
+      this.cursor.style.display = 'none';
+      this.follower.style.display = 'none';
+      return;
+    }
+
+    this.pos = { x: 0, y: 0 };
+    this.followerPos = { x: 0, y: 0 };
+    this.init();
+  }
+
+  init() {
+    document.addEventListener('mousemove', (e) => {
+      this.pos.x = e.clientX;
+      this.pos.y = e.clientY;
+
+      this.cursor.style.left = this.pos.x + 'px';
+      this.cursor.style.top = this.pos.y + 'px';
+    });
+
+    const loop = () => {
+      // Follower easing
+      this.followerPos.x += (this.pos.x - this.followerPos.x) * 0.15;
+      this.followerPos.y += (this.pos.y - this.followerPos.y) * 0.15;
+
+      this.follower.style.left = this.followerPos.x + 'px';
+      this.follower.style.top = this.followerPos.y + 'px';
+
+      requestAnimationFrame(loop);
+    };
+    loop();
+
+    // Hover effects on links/buttons
+    const interactiveElements = document.querySelectorAll('a, button, .tilt-card, input, textarea');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+
+    // Add magnetic effect to CTA buttons
+    const magneticElements = document.querySelectorAll('.cta-button, .logo');
+    magneticElements.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px) scale(1.05)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0px, 0px) scale(1)';
+      });
+    });
+  }
+}
+
+// Feature 3: 3D Tilt Cards
+class TiltEffect {
+  constructor() {
+    this.cards = document.querySelectorAll('.tilt-card');
+    if (this.cards.length === 0 || window.matchMedia("(any-hover: none)").matches) return;
+    this.init();
+  }
+
+  init() {
+    this.cards.forEach(card => {
+      // Add glare element
+      const glare = document.createElement('div');
+      glare.classList.add('glare');
+      card.appendChild(glare);
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -10; // Max tilt 10deg
+        const rotateY = ((x - centerX) / centerX) * 10;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+
+        // Update glare position
+        glare.style.opacity = '1';
+        glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, 0.2) 0%, transparent 60%)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        glare.style.opacity = '0';
+      });
+    });
+  }
+}
+
+// Feature 5: Terminal Boot Sequence
+class TerminalBoot {
+  constructor(containerId) {
+    this.container = document.getElementById(containerId);
+    if (!this.container) return;
+
+    this.lines = [
+      '[ OK ] Started Local Data Processing Core.',
+      'Initializing Neuro-Symbolic Hybrid AI...',
+      '[ OK ] Edge AI perception module loaded (YOLOv8-Seg).',
+      '[ OK ] Generative AI cognition module loaded (Phi-3).',
+      'Establishing PQC-secured MQTT connection...',
+      '<span class="success">Connection Established.</span>',
+      'Deploying Swarm Intelligence CBBA Protocol...',
+      '<span class="success">GAPbot Fleet synchronized.</span>',
+      '<span class="user">corax@system</span>:<span class="path">~/corax_os</span>$ ./start_ecosystem.sh',
+      'Booting Cyber-Physical System...',
+      '<span class="success">System Ready. Awaiting Commands.</span>'
+    ];
+    this.currentLine = 0;
+    this.init();
+  }
+
+  init() {
+    this.container.innerHTML = '<span class="cursor-blink"></span>';
+    setTimeout(() => this.typeLine(), 500);
+  }
+
+  typeLine() {
+    if (this.currentLine < this.lines.length) {
+      const lineText = this.lines[this.currentLine];
+
+      // Remove cursor temporarily
+      const cursor = this.container.querySelector('.cursor-blink');
+      if (cursor) this.container.removeChild(cursor);
+
+      const lineDiv = document.createElement('div');
+      lineDiv.className = 'terminal-line';
+
+      // If it contains HTML, just set it, else type it out char by char
+      if (lineText.includes('<')) {
+         lineDiv.innerHTML = lineText;
+         this.container.appendChild(lineDiv);
+         this.container.innerHTML += '<span class="cursor-blink"></span>';
+         this.container.scrollTop = this.container.scrollHeight;
+         this.currentLine++;
+         setTimeout(() => this.typeLine(), Math.random() * 300 + 100);
+      } else {
+        this.container.appendChild(lineDiv);
+        this.typeChar(lineDiv, lineText, 0);
+      }
+    }
+  }
+
+  typeChar(element, text, index) {
+    if (index < text.length) {
+      element.innerHTML += text.charAt(index);
+      this.container.scrollTop = this.container.scrollHeight;
+      setTimeout(() => this.typeChar(element, text, index + 1), Math.random() * 30 + 10);
+    } else {
+      this.container.innerHTML += '<span class="cursor-blink"></span>';
+      this.currentLine++;
+      setTimeout(() => this.typeLine(), Math.random() * 400 + 100);
+    }
+  }
+}
+
+// Initialize New Features
+document.addEventListener('DOMContentLoaded', () => {
+  // Add a slight delay to ensure original scripts are loaded
+  setTimeout(() => {
+    new NeuralNetwork('neural-canvas');
+    new CustomCursor();
+    new TiltEffect();
+    new TerminalBoot('terminal-body');
+  }, 100);
+});
