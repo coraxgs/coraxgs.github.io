@@ -252,14 +252,14 @@ class ProjectRenderer {
       <div class="project-header">
         <h3><a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">${repo.name}</a></h3>
         <div class="project-stats">
-          <span title="Stjärnor" class="stat-item">⭐ ${this.formatNumber(repo.stargazers_count || 0)}</span>
+          <span title="Stars" class="stat-item">⭐ ${this.formatNumber(repo.stargazers_count || 0)}</span>
           <span title="Forks" class="stat-item">🔄 ${this.formatNumber(repo.forks_count || 0)}</span>
-          ${isRecent ? '<span title="Nyligen uppdaterad" class="stat-item active">🔥 Aktiv</span>' : ''}
+          ${isRecent ? '<span title="Recently updated" class="stat-item active">🔥 Active</span>' : ''}
         </div>
       </div>
       
       <p class="project-description">
-        ${repo.description || 'Ett spännande projekt från Corax CoLAB som utforskar nya tekniska möjligheter.'}
+        ${repo.description || 'An exciting project from Corax CoLAB exploring new technical possibilities.'}
       </p>
       
       <div class="project-tags">
@@ -280,7 +280,7 @@ class ProjectRenderer {
       <div class="project-footer">
         <div class="project-links">
           <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="project-link">
-            📂 Visa kod
+            📂 View Code
           </a>
           ${repo.homepage ? `
             <a href="${repo.homepage}" target="_blank" rel="noopener noreferrer" class="project-link">
@@ -289,7 +289,7 @@ class ProjectRenderer {
           ` : ''}
         </div>
         <span class="project-updated">
-          Uppdaterad ${this.formatDate(repo.updated_at)}
+          Updated ${this.formatDate(repo.updated_at)}
         </span>
       </div>
     `;
@@ -314,13 +314,13 @@ class ProjectRenderer {
     
     card.innerHTML = `
       <div class="view-all-content">
-        <h3 style="color: white; margin-bottom: 1rem;">Fler projekt</h3>
+        <h3 style="color: white; margin-bottom: 1rem;">More projects</h3>
         <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">
-          Vi har fler spännande projekt på vår GitHub-profil. Klicka här för att utforska allt!
+          We have more exciting projects on our GitHub profile. Click here to explore them all!
         </p>
         <div style="font-size: 2rem; margin-bottom: 1rem;">🚀</div>
         <div style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">
-          Totalt ${totalCount} offentliga repositorier
+          Total ${totalCount} public repositories
         </div>
       </div>
     `;
@@ -402,7 +402,7 @@ class CoraxWebsite {
     if (button) {
       button.textContent = this.theme === 'dark' ? '☀️' : '🌙';
       button.setAttribute('aria-label', 
-        this.theme === 'dark' ? 'Växla till ljust tema' : 'Växla till mörkt tema'
+        this.theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
       );
     }
   }
@@ -440,7 +440,7 @@ class CoraxWebsite {
     });
 
     // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    document.querySelectorAll("a[href^=\"#\"]").forEach(anchor => {
       anchor.addEventListener('click', (e) => {
         e.preventDefault();
         const target = document.querySelector(anchor.getAttribute('href'));

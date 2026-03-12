@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Corax CoLAB – AI, Automation &amp; Sustainability | CoraxCoLAB</title>
-  <meta name="description" content="Corax CoLAB is the architect behind cyber-physical systems that secure your future in an increasingly regulated and resource-constrained world."/>
+  <title>Corax CoLAB – Autonomous Robotics, Edge AI & Sustainability</title>
+  <meta name="description" content="Corax CoLAB is the architect behind cyber-physical systems that secure your future in an increasingly regulated and resource-constrained world. Meet GAP and GAPbot."/>
   <meta name="author" content="Corax CoLAB">
-  <meta name="keywords" content="AI, Machine Learning, Web3, Blockchain, Automation, GreenTech, Open Source, Cardano, Polkadot, Smart Contracts, Robotics">
+  <meta name="keywords" content="AI, Machine Learning, Web3, Blockchain, Automation, GreenTech, Robotics, Edge AI, GAP, GAPbot">
   
   <!-- Open Graph Meta -->
-  <meta property="og:title" content="Corax CoLAB – Future-Forward Innovation in AI, Web3 & Blockchain">
-  <meta property="og:description" content="Independent research and development studio building practical solutions in AI, automation, and blockchain technology. Both open source projects and advanced proprietary systems."/>
+  <meta property="og:title" content="Corax CoLAB – The Future of Autonomous Robotics">
+  <meta property="og:description" content="Architects of cyber-physical systems uniting advanced robotics (GAPbot), industrial-grade Edge AI, and architectural compliance (GAP Platform)."/>
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://coraxgs.github.io">
   <meta property="og:image" content="https://coraxgs.github.io/images/logo.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Corax CoLAB – Future-Forward Innovation">
-  <meta name="twitter:description" content="Practical solutions in AI, automation, Web3, and blockchain. Open source projects and advanced proprietary systems."/>
+  <meta name="twitter:title" content="Corax CoLAB – The Future of Autonomous Robotics">
+  <meta name="twitter:description" content="Architects of cyber-physical systems uniting advanced robotics, industrial-grade Edge AI, and architectural compliance."/>
   <meta name="twitter:image" content="https://coraxgs.github.io/images/logo.png">
   
   <!-- Favicon -->
@@ -37,37 +37,30 @@
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Corax CoLAB",
-    "description": "Independent research and development studio building practical solutions in AI, automation, Web3, and blockchain technology for a sustainable future. We develop both open source projects and advanced proprietary systems like GAP and GAPbot.",
+    "description": "Corax CoLAB operates at the intersection of advanced robotics, Edge AI, and global sustainability strategy. Creators of GAP and GAPbot.",
     "url": "https://coraxgs.github.io",
     "sameAs": [
       "https://github.com/coraxgs",
-      "https://coraxcolab.coraxgardening.se"
+      "https://coraxcolab.com"
     ],
     "foundingDate": "2024",
-    "areaServed": "SE",
-    "knowsAbout": ["AI", "Machine Learning", "Web3", "Blockchain", "Automation", "GreenTech", "Open Source"],
-    "memberOf": {
-      "@type": "Organization",
-      "name": "Open Source Community"
-    }
+    "areaServed": "Global",
+    "knowsAbout": ["AI", "Robotics", "Edge AI", "Web3", "Blockchain", "Automation", "GreenTech", "Compliance"]
   }
   </script>
   
-  <!-- Analytics (Plausible - Privacy-friendly) -->
+  <!-- Analytics -->
   <script defer data-domain="coraxgs.github.io" src="https://plausible.io/js/script.js"></script>
   
-  <!-- External CSS -->
+  <!-- CSS -->
   <link rel="stylesheet" href="styles.css">
-  
-  <!-- Inline Critical CSS for above-the-fold content -->
-
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   
-  <!-- Preload critical resources -->
+  <!-- Preload -->
   <link rel="preload" href="styles.css" as="style">
   <link rel="preload" href="app.js" as="script">
 </head>
@@ -77,16 +70,16 @@
   <!-- Navigation -->
   <nav id="navbar">
     <div class="nav-container">
-      <button class="logo" onclick="scrollToTop()" onkeydown="handleLogoKeydown(event)" aria-label="Go to top of page">
-        <img src="images/logo.png" alt="Corax CoLAB" class="logo-img">
+      <button class="logo" onclick="scrollToTop()" aria-label="Go to top of page">
         <span class="logo-text">Corax CoLAB</span>
       </button>
       <ul class="nav-links" id="nav-links">
+        <li><a href="#platform">GAP Platform</a></li>
+        <li><a href="#capabilities">Capabilities</a></li>
+        <li><a href="#featured">Featured Repos</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#expertise">Expertise</a></li>
-        <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
-                <li><button id="theme-toggle" class="theme-toggle" title="Toggle theme" aria-label="Toggle dark/light theme">🌙</button></li>
+        <li><button id="theme-toggle" class="theme-toggle" title="Toggle theme" aria-label="Toggle dark/light theme">🌙</button></li>
       </ul>
       <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open navigation menu">
         <span></span>
@@ -94,169 +87,243 @@
         <span></span>
       </button>
     </div>
-    <!-- Mobile Navigation Overlay -->
+    <!-- Mobile Overlay -->
     <div class="mobile-nav-overlay" id="mobile-nav-overlay">
       <div class="mobile-nav-content">
-        <a href="#about" onclick="closeMobileMenu()">About</a>
-        <a href="#expertise" onclick="closeMobileMenu()">Expertise</a>
-        <a href="#projects" onclick="closeMobileMenu()">Projects</a>
+        <a href="#platform" onclick="closeMobileMenu()">GAP Platform</a>
+        <a href="#capabilities" onclick="closeMobileMenu()">Capabilities</a>
+        <a href="#featured" onclick="closeMobileMenu()">Featured Repos</a>
+        <a href="#about" onclick="closeMobileMenu()">About Us</a>
         <a href="#contact" onclick="closeMobileMenu()">Contact</a>
-        <div class="mobile-nav-controls">
-                  </div>
       </div>
     </div>
   </nav>
 
   <!-- Hero Section -->
-    <section class="hero">
+  <section class="hero">
     <div class="hero-bg-video-placeholder"></div>
     <div class="hero-bg-overlay"></div>
     <div class="hero-content">
-      <h1>The Catalyst for Transformation Towards a Sustainable Future</h1>
+      <h1>The Future of Autonomous Robotics, Edge AI, and Sustainable Ecosystems</h1>
       <p class="hero-subtitle">Decentralized Autonomy and Global Ecosystem Leadership</p>
       <p class="hero-description">
-        Corax CoLAB is the architect behind cyber-physical systems that secure your future in an increasingly regulated and resource-constrained world. We unite advanced robotics (GAPbot) and industrial-grade Edge AI (GAP Platform).
+        We build AI-driven ecosystems that unite efficiency with responsibility. We are the architects behind cyber-physical systems that secure your future in an increasingly regulated world—creators of the GAP Platform and GAPbot.
       </p>
       <div class="hero-ctas">
-        <a href="#projects" class="cta-button primary-cta">
-          Explore the GAP Platform
+        <a href="#platform" class="cta-button primary-cta">
+          Discover GAPbot
         </a>
-        <a href="#about" class="cta-button secondary-cta">
-          Learn More
+        <a href="#featured" class="cta-button secondary-cta">
+          Explore Code
         </a>
       </div>
     </div>
   </section>
 
-  <!-- About Section -->
-    <section id="about">
-    <h2 class="section-title">The Corax Commitment</h2>
+  <!-- Platform & GAPbot Section -->
+  <section id="platform">
+    <h2 class="section-title">🤖 Meet GAP and GAPbot</h2>
     <p class="section-subtitle">
-      Our strategic approach is based on a 'bottom-up' perspective: true global leadership is achieved by solving customers' most pressing challenges – from energy savings to mitigating fine risks.
+      The intelligent control center orchestrating fleets of robots for resource optimization, and the versatile hexapod designed to navigate complex environments autonomously.
+    </p>
+
+    <div class="grid-2" style="margin-top: 3rem;">
+        <div class="feature-card product-card">
+            <h3>GAP Platform (The Brain)</h3>
+            <p>The industrial analysis and control center, developed to handle the most complex business logic and real-time data streams. A hybrid cloud/edge platform orchestrating fleets of robots.</p>
+            <ul style="text-align: left; margin-top: 1.5rem; color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.8;">
+                <li><strong>Hybrid Architecture:</strong> Balances reliable execution with ultra-low latency for Edge data.</li>
+                <li><strong>Protocol Integration:</strong> Seamless integration with OPC-UA, Modbus, BACnet, and PQC-secured MQTT.</li>
+                <li><strong>Explainable AI (XAI):</strong> Human-understandable explanations for predictive decisions (EU AI Act compliant).</li>
+                <li><strong>Digital Twin & 4D:</strong> Virtual copies for remote monitoring and Digital Risk Mitigation.</li>
+            </ul>
+        </div>
+        <div class="feature-card product-card">
+            <h3>GAPbot (The Body)</h3>
+            <p>Autonomous hexapod robotics for optimization, security, and analysis. Equipped with 'Sun Bathing Mode' for extreme endurance and superior accessibility in complex environments.</p>
+            <ul style="text-align: left; margin-top: 1.5rem; color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.8;">
+                <li><strong>Neuro-Symbolic Hybrid AI:</strong> Edge AI (YOLOv8-Seg on Hailo-8L) + Generative AI (Phi-3 Medium).</li>
+                <li><strong>Hexapod Kinematics:</strong> Superior mobility with 'Split-Belly Kinematics' for a low center of gravity.</li>
+                <li><strong>Energy Optimization:</strong> MPPT 'Sun Bathing Mode' maximizes autonomous runtime via solar panels.</li>
+                <li><strong>Self-Healing Code:</strong> Dynamically identifies errors, generates fixes, and applies them for maximum uptime.</li>
+            </ul>
+        </div>
+    </div>
+  </section>
+
+  <!-- Core Capabilities Section -->
+  <section id="capabilities">
+    <h2 class="section-title">Core Capabilities</h2>
+    <p class="section-subtitle">
+      Advanced technologies defining the Corax CoLAB ecosystem, driving quantifiable sustainability and resource efficiency.
     </p>
     
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-illustration">
-          <div class="tech-icon-wrapper">🌍</div>
+          <div class="tech-icon-wrapper">🧠</div>
         </div>
-        <h3>Sustainability</h3>
-        <p>Embedded in the GAP system's DNA. From energy-efficient AI solutions to Digital Battery Passports, directly supporting CSRD/ESRS reporting.</p>
+        <h3>Neuro-Symbolic Hybrid AI</h3>
+        <p>Combining industrial Edge AI for ultra-low latency perception with Generative AI for complex cognition and autonomous reasoning.</p>
       </div>
       
       <div class="feature-card">
         <div class="feature-illustration">
-          <div class="tech-icon-wrapper">⚡</div>
+          <div class="tech-icon-wrapper">🕸️</div>
         </div>
-        <h3>Innovation</h3>
-        <p>Continuous development of groundbreaking technologies like Post-Quantum Cryptography (PQC) and Self-Healing Code.</p>
+        <h3>Advanced Swarm Intelligence</h3>
+        <p>Decentralized task allocation via CBBA (Consensus-Based Bundle Algorithm). Robots exchange information for conflict-free, coordinated work.</p>
       </div>
       
       <div class="feature-card">
         <div class="feature-illustration">
           <div class="tech-icon-wrapper">🔒</div>
         </div>
-        <h3>Ethics & Responsibility</h3>
-        <p>Strict handling of sensitive data. All biometric data processing occurs locally on the Edge device, guaranteeing GDPR compliance.</p>
+        <h3>Compliance-as-Code & PQC</h3>
+        <p>Regulatory requirements (EUDR, CSRD/ESRS) hardcoded into system logic. Future-proofed with Post-Quantum Cryptography (PQC).</p>
       </div>
-    </div>
-
-    <div style="margin-top: 4rem;">
-        <h2 class="section-title">🤖 Meet GAP and GAPbot</h2>
-        <div class="grid-2" style="margin-top: 2rem;">
-            <div class="feature-card product-card">
-                <h3>GAP Platform</h3>
-                <p>The industrial analysis and control center. A hybrid cloud/edge platform orchestrating fleets of robots for intelligent resource optimization.</p>
-                <ul style="text-align: left; margin-top: 1rem; color: var(--text-secondary); padding-left: 1.5rem;">
-                    <li>Hybrid Architecture (Flask/FastAPI)</li>
-                    <li>Explainable AI (XAI)</li>
-                    <li>Quantum-Resistant Encryption</li>
-                </ul>
-            </div>
-            <div class="feature-card product-card">
-                <h3>GAPbot</h3>
-                <p>Autonomous hexapod robotics for optimization, security, and analysis. Equipped with 'Sun Bathing Mode' for extreme endurance.</p>
-                <ul style="text-align: left; margin-top: 1rem; color: var(--text-secondary); padding-left: 1.5rem;">
-                    <li>Neuro-Symbolic Hybrid AI</li>
-                    <li>Hexapod Kinematics</li>
-                    <li>Self-Healing Code</li>
-                </ul>
-            </div>
-        </div>
     </div>
   </section>
 
-  <!-- Stats Section -->
-  <section id="expertise">
-    <h2 class="section-title">Our Values</h2>
+  <!-- Featured GitHub Repositories -->
+  <section id="featured">
+    <h2 class="section-title">Featured Innovations</h2>
     <p class="section-subtitle">
-      We are guided by clear principles that shape everything we do
+      Explore our open-source and proprietary core repositories driving the GAP ecosystem and Web3 integrations.
+    </p>
+
+    <div class="projects-grid">
+      <!-- Repo 1: GAPbot -->
+      <div class="project-card">
+        <div class="project-header">
+          <h3><a href="https://github.com/PelleNybe/CoraxCoLABs-GAP-GreenAutomatedPlatform---GAPbot" target="_blank" rel="noopener noreferrer">GAPbot Core</a></h3>
+          <div class="project-stats">
+            <span class="stat-item active">🔥 Deep Tech</span>
+          </div>
+        </div>
+        <p class="project-description">
+          The core repository for the GAPbot autonomous hexapod robotics platform. Features neuro-symbolic AI, swarm intelligence, and edge-computing capabilities.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Robotics</span>
+          <span class="tag">Edge AI</span>
+          <span class="tag">Python</span>
+        </div>
+        <div class="project-footer">
+          <a href="https://github.com/PelleNybe/CoraxCoLABs-GAP-GreenAutomatedPlatform---GAPbot" target="_blank" rel="noopener noreferrer" class="project-link">
+            📂 View on GitHub →
+          </a>
+        </div>
+      </div>
+
+      <!-- Repo 2: Crypto MCP Server -->
+      <div class="project-card">
+        <div class="project-header">
+          <h3><a href="https://github.com/coraxgs/Crypto-MCP-Server---by-Corax-CoLAB" target="_blank" rel="noopener noreferrer">Crypto MCP Server</a></h3>
+          <div class="project-stats">
+            <span class="stat-item">Web3 Integration</span>
+          </div>
+        </div>
+        <p class="project-description">
+          A Model Context Protocol (MCP) server for deep crypto data integration. Built by Corax CoLAB to bridge AI models with real-time blockchain analytics and trading data.
+        </p>
+        <div class="project-tags">
+          <span class="tag">MCP</span>
+          <span class="tag">Web3</span>
+          <span class="tag">Blockchain</span>
+        </div>
+        <div class="project-footer">
+          <a href="https://github.com/coraxgs/Crypto-MCP-Server---by-Corax-CoLAB" target="_blank" rel="noopener noreferrer" class="project-link">
+            📂 View on GitHub →
+          </a>
+        </div>
+      </div>
+
+      <!-- Repo 3: PelleNybe Profile/Core -->
+      <div class="project-card">
+        <div class="project-header">
+          <h3><a href="https://github.com/PelleNybe/PelleNybe" target="_blank" rel="noopener noreferrer">Founder's Core Insights</a></h3>
+          <div class="project-stats">
+            <span class="stat-item">Architecture</span>
+          </div>
+        </div>
+        <p class="project-description">
+          Architectural overviews, vision documents, and foundational code structures driving the Corax CoLAB engineering ethos.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Architecture</span>
+          <span class="tag">Vision</span>
+        </div>
+        <div class="project-footer">
+          <a href="https://github.com/PelleNybe/PelleNybe" target="_blank" rel="noopener noreferrer" class="project-link">
+            📂 View on GitHub →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dynamic GitHub Loading Section (Retained for community repos) -->
+    <div style="margin-top: 4rem;">
+      <h3 style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">Community Contributions</h3>
+      <div id="loading" class="loading" style="display: block;">
+        <div class="spinner"></div>
+        <span>Loading community projects...</span>
+      </div>
+      <div id="projects-grid" class="projects-grid" style="display: none;"></div>
+      <div id="error-message" class="error-message" style="display: none;"></div>
+    </div>
+  </section>
+
+  <!-- About/Commitment Section -->
+  <section id="about">
+    <h2 class="section-title">The Corax Commitment</h2>
+    <p class="section-subtitle">
+      True global leadership is achieved by solving customers' most pressing challenges—from energy savings to mitigating fine risks via Compliance-as-Code.
     </p>
     
     <div class="stats-grid">
       <div class="stat-card">
-        <span class="stat-number">💎</span>
-        <div class="stat-label">Open Source + Proprietary</div>
+        <span class="stat-number">30-50%</span>
+        <div class="stat-label">Energy Savings</div>
       </div>
       <div class="stat-card">
-        <span class="stat-number">♻️</span>
-        <div class="stat-label">Resource Efficiency</div>
+        <span class="stat-number">100%</span>
+        <div class="stat-label">Regulatory Traceability</div>
       </div>
       <div class="stat-card">
-        <span class="stat-number">🔒</span>
-        <div class="stat-label">Privacy & Security</div>
+        <span class="stat-number">Zero</span>
+        <div class="stat-label">Trust Architecture</div>
       </div>
       <div class="stat-card">
-        <span class="stat-number">🤝</span>
-        <div class="stat-label">Interoperability</div>
+        <span class="stat-number">Edge</span>
+        <div class="stat-label">Local Data Processing</div>
       </div>
     </div>
   </section>
 
-  <!-- Projects Section -->
-  <section id="projects">
-    <h2 class="section-title">Our Projects</h2>
-    <p class="section-subtitle">
-      Explore our latest projects in AI, automation, and blockchain technology - both open source contributions and proprietary solutions
-    </p>
-    
-    <div id="loading" class="loading" style="display: block;">
-      <div class="spinner"></div>
-      <span>Loading projects...</span>
-    </div>
-    
-    <div id="projects-grid" class="projects-grid" style="display: none;"></div>
-    
-    <div id="error-message" class="error-message" style="display: none;">
-      <h3>⚠️ Could not load projects</h3>
-      <p>There was a problem fetching our GitHub repositories. Visit our
-      <a href="https://github.com/coraxgs" target="_blank" style="color: var(--primary-color);">GitHub profile</a>
-      directly to see all projects.</p>
-    </div>
-  </section>
   <!-- Contact Section -->
   <section id="contact">
-    <h2 class="section-title">Get in Touch</h2>
+    <h2 class="section-title">Connect with Corax CoLAB</h2>
     <p class="section-subtitle">
-      Interested in collaboration or have questions about our projects? Don't hesitate to reach out!
+      Ready to transform your operations with autonomous robotics and Edge AI?
     </p>
     
     <div class="features-grid" style="max-width: 800px; margin: 0 auto;">
-      <div class="feature-card">
-        <span class="feature-icon">💻</span>
-        <h3>GitHub</h3>
-        <p>Explore our code, report bugs, and contribute to our open source projects.</p>
-        <a href="https://github.com/coraxgs" target="_blank" class="project-link">
-          github.com/coraxgs →
+      <div class="feature-card" style="padding: 2rem;">
+        <span class="feature-icon">🌐</span>
+        <h3>Main Website</h3>
+        <p>Visit our primary domain for deep dives into our services, enterprise solutions, and booking a demo.</p>
+        <a href="https://coraxcolab.com" target="_blank" class="cta-button" style="margin-top: 1rem; width: 100%; justify-content: center;">
+          coraxcolab.com
         </a>
       </div>
       
-      <div class="feature-card">
-        <span class="feature-icon">🌐</span>
-        <h3>Website</h3>
-        <p>Visit our main website for more information about our services and areas of expertise.</p>
-        <a href="https://coraxcolab.coraxgardening.se" target="_blank" class="project-link">
-          coraxcolab.coraxgardening.se →
+      <div class="feature-card" style="padding: 2rem;">
+        <span class="feature-icon">✉️</span>
+        <h3>Contact Us</h3>
+        <p>Reach out directly for consultation regarding AI, Web3, Blockchain, and advanced robotics integrations.</p>
+        <a href="mailto:info@coraxcolab.com" class="cta-button secondary-cta" style="margin-top: 1rem; width: 100%; justify-content: center;">
+          info@coraxcolab.com
         </a>
       </div>
     </div>
@@ -265,20 +332,19 @@
   <footer>
     <div class="footer-content">
       <div class="footer-links">
-        <a href="https://github.com/coraxgs" target="_blank">GitHub</a>
-        <a href="https://coraxcolab.coraxgardening.se" target="_blank">Website</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
+        <a href="https://coraxcolab.com" target="_blank">Official Website</a>
+        <a href="https://github.com/coraxgs" target="_blank">GitHub (CoraxGS)</a>
+        <a href="https://github.com/PelleNybe" target="_blank">GitHub (PelleNybe)</a>
+        <a href="#platform">GAP Platform</a>
       </div>
-      <p style="color: var(--text-muted); margin-top: 1rem;">
-        © <span id="year"></span> Corax CoLAB – <span>Building the future with AI, automation, and decentralized technology.</span>
-        <br>
-        <small>We develop both open source projects and advanced proprietary systems for various use cases.</small>
+      <p style="color: var(--text-muted); margin-top: 1.5rem; font-size: 0.9rem;">
+        © <span id="year"></span> Corax CoLAB. All rights reserved.<br>
+        Building the future with intelligent technology that combines efficiency with responsibility.
       </p>
     </div>
   </footer>
 
-  <!-- Enhanced JavaScript Application -->
+  <!-- App Scripts -->
   <script src="app.js" defer></script>
 </body>
 </html>
