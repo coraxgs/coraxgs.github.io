@@ -668,228 +668,308 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Export for potential external use
 window.CoraxWebsite = CoraxWebsite;
-// Custom Cursor Implementation
-const initCustomCursor = () => {
-  const cursor = document.createElement("div");
-  cursor.classList.add("custom-cursor");
-  document.body.appendChild(cursor);
+// ==========================================
+// 5 NEW WORLD CLASS FEATURES IMPLEMENTATION
+// ==========================================
 
-  document.addEventListener("mousemove", (e) => {
-    cursor.style.left = `${e.clientX}px`;
-    cursor.style.top = `${e.clientY}px`;
-  });
+// Feature 1: Interactive Neural Network Canvas
+class NeuralNetwork {
+  constructor(canvasId) {
+    this.canvas = document.getElementById(canvasId);
+    if (!this.canvas) return;
+    this.ctx = this.canvas.getContext('2d');
+    this.particles = [];
+    this.numParticles = window.innerWidth < 768 ? 50 : 120;
+    this.mouse = { x: null, y: null, radius: 150 };
 
-  document.addEventListener("mouseover", (e) => {
-    if (e.target.closest("a, button, input, select, textarea")) {
-      cursor.classList.add("hover");
-    }
-  });
-  document.addEventListener("mouseout", (e) => {
-    if (e.target.closest("a, button, input, select, textarea")) {
-      cursor.classList.remove("hover");
-    }
-  });
-};
+    this.init();
+    this.animate();
 
-document.addEventListener("DOMContentLoaded", initCustomCursor);
-
-// Theme Customization Logic
-const initThemeCustomizer = () => {
-  const root = document.documentElement;
-  const themeBtns = document.querySelectorAll(".theme-btn");
-
-  themeBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      const primary = btn.dataset.primary;
-      const secondary = btn.dataset.secondary;
-      root.style.setProperty("--primary-color", primary);
-      root.style.setProperty("--secondary-color", secondary);
-      root.style.setProperty(
-        "--gradient-primary",
-        `linear-gradient(135deg, ${primary}, ${secondary})`,
-      );
-
-      // Save preference to localStorage
-      localStorage.setItem("primary-color", primary);
-      localStorage.setItem("secondary-color", secondary);
+    window.addEventListener('resize', () => {
+      this.init();
     });
-  });
 
-  // Load saved theme
-  const savedPrimary = localStorage.getItem("primary-color");
-  const savedSecondary = localStorage.getItem("secondary-color");
-  if (savedPrimary && savedSecondary) {
-    root.style.setProperty("--primary-color", savedPrimary);
-    root.style.setProperty("--secondary-color", savedSecondary);
-    root.style.setProperty(
-      "--gradient-primary",
-      `linear-gradient(135deg, ${savedPrimary}, ${savedSecondary})`,
-    );
+    window.addEventListener('mousemove', (e) => {
+      this.mouse.x = e.x;
+      this.mouse.y = e.y;
+    });
+
+    window.addEventListener('mouseout', () => {
+      this.mouse.x = null;
+      this.mouse.y = null;
+    });
   }
-};
 
-document.addEventListener("DOMContentLoaded", initThemeCustomizer);
+  init() {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+    this.particles = [];
+    for (let i = 0; i < this.numParticles; i++) {
+      let x = Math.random() * this.canvas.width;
+      let y = Math.random() * this.canvas.height;
+      let size = Math.random() * 2 + 0.5;
+      let speedX = (Math.random() - 0.5) * 1.5;
+      let speedY = (Math.random() - 0.5) * 1.5;
+      this.particles.push(new Particle(x, y, speedX, speedY, size, this.ctx, this.canvas, this.mouse));
+    }
+  }
 
-// Live GitHub Activity Feed
-const fetchGitHubActivity = async () => {
-  try {
-    const username = "coraxgs"; // The target organization or user
-    const response = await fetch(
-      `https://api.github.com/users/${username}/events/public?per_page=5`,
-    );
-    if (!response.ok) throw new Error("Failed to fetch activity");
+  animate() {
+    requestAnimationFrame(this.animate.bind(this));
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    const events = await response.json();
-    const activityContainer = document.getElementById("github-activity");
+    for (let i = 0; i < this.particles.length; i++) {
+      this.particles[i].update();
+      this.particles[i].draw();
 
-    if (!activityContainer) return;
+      // Connect particles
+      for (let j = i; j < this.particles.length; j++) {
+        let dx = this.particles[i].x - this.particles[j].x;
+        let dy = this.particles[i].y - this.particles[j].y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
 
-    events.forEach((event) => {
-      const activityItem = document.createElement("div");
-      activityItem.className = "activity-item";
-
-      // Format date
-      const date = new Date(event.created_at).toLocaleDateString();
-
-      let actionText = "";
-      switch (event.type) {
-        case "PushEvent":
-          actionText = `Pushed to <a href="https://github.com/${event.repo.name}" target="_blank">${event.repo.name}</a>`;
-          break;
-        case "IssuesEvent":
-          actionText = `${event.payload.action} an issue in <a href="https://github.com/${event.repo.name}" target="_blank">${event.repo.name}</a>`;
-          break;
-        case "PullRequestEvent":
-          actionText = `${event.payload.action} a pull request in <a href="https://github.com/${event.repo.name}" target="_blank">${event.repo.name}</a>`;
-          break;
-        default:
-          actionText = `${event.type} on <a href="https://github.com/${event.repo.name}" target="_blank">${event.repo.name}</a>`;
+        if (distance < 120) {
+          this.ctx.beginPath();
+          this.ctx.strokeStyle = `rgba(0, 255, 204, ${1 - distance / 120})`;
+          this.ctx.lineWidth = 0.5;
+          this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
+          this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
+          this.ctx.stroke();
+          this.ctx.closePath();
+        }
       }
-
-      activityItem.innerHTML = `
-                <div class="activity-date">${date}</div>
-                <div class="activity-action">${actionText}</div>
-            `;
-      activityContainer.appendChild(activityItem);
-    });
-  } catch (error) {
-    console.error("Error fetching GitHub activity:", error);
-    // Optionally display an error message in the UI
-  }
-};
-
-document.addEventListener("DOMContentLoaded", fetchGitHubActivity);
-
-// Web Component for GitHub Repository Card
-class GithubRepoCard extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: "open" });
-  }
-
-  connectedCallback() {
-    const title = this.getAttribute("title");
-    const description = this.getAttribute("description");
-    const url = this.getAttribute("url");
-    const tags = this.getAttribute("tags")
-      ? this.getAttribute("tags").split(",")
-      : [];
-
-    this.shadowRoot.innerHTML = `
-            <style>
-                :host {
-                    display: block;
-                    background: #111;
-                    border-radius: 16px;
-                    padding: 2rem;
-                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-                    border: 1px solid rgba(255, 255, 255, 0.05);
-                    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                }
-                :host(:hover) {
-                    transform: translateY(-5px);
-                    box-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
-                    border-color: rgba(0, 255, 204, 0.3);
-                }
-                h3 {
-                    margin: 0 0 1rem 0;
-                    color: #F8F9FA;
-                    font-size: 1.5rem;
-                }
-                a {
-                    color: inherit;
-                    text-decoration: none;
-                    transition: color 0.3s ease;
-                }
-                a:hover {
-                    color: #00FFC2;
-                }
-                p {
-                    color: #E8EAED;
-                    line-height: 1.6;
-                    margin-bottom: 1.5rem;
-                }
-                .tags {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 0.5rem;
-                    margin-bottom: 1.5rem;
-                }
-                .tag {
-                    background: rgba(0, 255, 194, 0.1);
-                    color: #00FFC2;
-                    padding: 0.25rem 0.75rem;
-                    border-radius: 20px;
-                    font-size: 0.85rem;
-                    font-weight: 500;
-                    border: 1px solid rgba(0, 255, 194, 0.2);
-                }
-                .footer a {
-                    display: inline-flex;
-                    align-items: center;
-                    color: #00FFC2;
-                    font-weight: 600;
-                    text-decoration: none;
-                    transition: transform 0.3s ease;
-                }
-                .footer a:hover {
-                    transform: translateX(5px);
-                }
-            </style>
-            <div>
-                <h3><a href="${url}" target="_blank" rel="noopener noreferrer">${title}</a></h3>
-                <p>${description}</p>
-                <div class="tags">
-                    ${tags.map((tag) => `<span class="tag">${tag.trim()}</span>`).join("")}
-                </div>
-                <div class="footer">
-                    <a href="${url}" target="_blank" rel="noopener noreferrer">📂 View on GitHub →</a>
-                </div>
-            </div>
-        `;
+    }
   }
 }
 
-customElements.define("github-repo-card", GithubRepoCard);
+class Particle {
+  constructor(x, y, speedX, speedY, size, ctx, canvas, mouse) {
+    this.x = x;
+    this.y = y;
+    this.speedX = speedX;
+    this.speedY = speedY;
+    this.size = size;
+    this.ctx = ctx;
+    this.canvas = canvas;
+    this.mouse = mouse;
+    this.baseX = x;
+    this.baseY = y;
+    this.density = (Math.random() * 30) + 1;
+  }
 
-// Interactive Architecture Diagram Logic
-const initArchDiagram = () => {
-  const nodes = document.querySelectorAll(".arch-node");
-  const infoBox = document.getElementById("arch-info");
+  draw() {
+    this.ctx.beginPath();
+    this.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    this.ctx.fillStyle = '#00ffcc';
+    this.ctx.fill();
+  }
 
-  nodes.forEach((node) => {
-    node.addEventListener("mouseenter", () => {
-      const info = node.dataset.info;
-      if (info && infoBox) {
-        infoBox.textContent = info;
+  update() {
+    // Collision detection
+    if (this.x > this.canvas.width || this.x < 0) this.speedX = -this.speedX;
+    if (this.y > this.canvas.height || this.y < 0) this.speedY = -this.speedY;
+
+    // Movement
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    // Mouse interaction (Swarm Intelligence effect)
+    if (this.mouse.x != null && this.mouse.y != null) {
+      let dx = this.mouse.x - this.x;
+      let dy = this.mouse.y - this.y;
+      let distance = Math.sqrt(dx * dx + dy * dy);
+      let forceDirectionX = dx / distance;
+      let forceDirectionY = dy / distance;
+      let maxDistance = this.mouse.radius;
+      let force = (maxDistance - distance) / maxDistance;
+      let directionX = forceDirectionX * force * this.density;
+      let directionY = forceDirectionY * force * this.density;
+
+      if (distance < this.mouse.radius) {
+        this.x -= directionX;
+        this.y -= directionY;
       }
-    });
-    node.addEventListener("mouseleave", () => {
-      if (infoBox) {
-        infoBox.textContent = "Hover over a component to see details.";
-      }
-    });
-  });
-};
+    }
+  }
+}
 
-document.addEventListener("DOMContentLoaded", initArchDiagram);
+// Feature 2: Custom Cursor
+class CustomCursor {
+  constructor() {
+    this.cursor = document.querySelector('.custom-cursor');
+    this.follower = document.querySelector('.custom-cursor-follower');
+    if (!this.cursor || !this.follower) return;
+
+    // Check if device supports hover (not a mobile device usually)
+    if (window.matchMedia("(any-hover: none)").matches) {
+      this.cursor.style.display = 'none';
+      this.follower.style.display = 'none';
+      return;
+    }
+
+    this.pos = { x: 0, y: 0 };
+    this.followerPos = { x: 0, y: 0 };
+    this.init();
+  }
+
+  init() {
+    document.addEventListener('mousemove', (e) => {
+      this.pos.x = e.clientX;
+      this.pos.y = e.clientY;
+
+      this.cursor.style.left = this.pos.x + 'px';
+      this.cursor.style.top = this.pos.y + 'px';
+    });
+
+    const loop = () => {
+      // Follower easing
+      this.followerPos.x += (this.pos.x - this.followerPos.x) * 0.15;
+      this.followerPos.y += (this.pos.y - this.followerPos.y) * 0.15;
+
+      this.follower.style.left = this.followerPos.x + 'px';
+      this.follower.style.top = this.followerPos.y + 'px';
+
+      requestAnimationFrame(loop);
+    };
+    loop();
+
+    // Hover effects on links/buttons
+    const interactiveElements = document.querySelectorAll('a, button, .tilt-card, input, textarea');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+
+    // Add magnetic effect to CTA buttons
+    const magneticElements = document.querySelectorAll('.cta-button, .logo');
+    magneticElements.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px) scale(1.05)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0px, 0px) scale(1)';
+      });
+    });
+  }
+}
+
+// Feature 3: 3D Tilt Cards
+class TiltEffect {
+  constructor() {
+    this.cards = document.querySelectorAll('.tilt-card');
+    if (this.cards.length === 0 || window.matchMedia("(any-hover: none)").matches) return;
+    this.init();
+  }
+
+  init() {
+    this.cards.forEach(card => {
+      // Add glare element
+      const glare = document.createElement('div');
+      glare.classList.add('glare');
+      card.appendChild(glare);
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -10; // Max tilt 10deg
+        const rotateY = ((x - centerX) / centerX) * 10;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+
+        // Update glare position
+        glare.style.opacity = '1';
+        glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, 0.2) 0%, transparent 60%)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        glare.style.opacity = '0';
+      });
+    });
+  }
+}
+
+// Feature 5: Terminal Boot Sequence
+class TerminalBoot {
+  constructor(containerId) {
+    this.container = document.getElementById(containerId);
+    if (!this.container) return;
+
+    this.lines = [
+      '[ OK ] Started Local Data Processing Core.',
+      'Initializing Neuro-Symbolic Hybrid AI...',
+      '[ OK ] Edge AI perception module loaded (YOLOv8-Seg).',
+      '[ OK ] Generative AI cognition module loaded (Phi-3).',
+      'Establishing PQC-secured MQTT connection...',
+      '<span class="success">Connection Established.</span>',
+      'Deploying Swarm Intelligence CBBA Protocol...',
+      '<span class="success">GAPbot Fleet synchronized.</span>',
+      '<span class="user">corax@system</span>:<span class="path">~/corax_os</span>$ ./start_ecosystem.sh',
+      'Booting Cyber-Physical System...',
+      '<span class="success">System Ready. Awaiting Commands.</span>'
+    ];
+    this.currentLine = 0;
+    this.init();
+  }
+
+  init() {
+    this.container.innerHTML = '<span class="cursor-blink"></span>';
+    setTimeout(() => this.typeLine(), 500);
+  }
+
+  typeLine() {
+    if (this.currentLine < this.lines.length) {
+      const lineText = this.lines[this.currentLine];
+
+      // Remove cursor temporarily
+      const cursor = this.container.querySelector('.cursor-blink');
+      if (cursor) this.container.removeChild(cursor);
+
+      const lineDiv = document.createElement('div');
+      lineDiv.className = 'terminal-line';
+
+      // If it contains HTML, just set it, else type it out char by char
+      if (lineText.includes('<')) {
+         lineDiv.innerHTML = lineText;
+         this.container.appendChild(lineDiv);
+         this.container.innerHTML += '<span class="cursor-blink"></span>';
+         this.container.scrollTop = this.container.scrollHeight;
+         this.currentLine++;
+         setTimeout(() => this.typeLine(), Math.random() * 300 + 100);
+      } else {
+        this.container.appendChild(lineDiv);
+        this.typeChar(lineDiv, lineText, 0);
+      }
+    }
+  }
+
+  typeChar(element, text, index) {
+    if (index < text.length) {
+      element.innerHTML += text.charAt(index);
+      this.container.scrollTop = this.container.scrollHeight;
+      setTimeout(() => this.typeChar(element, text, index + 1), Math.random() * 30 + 10);
+    } else {
+      this.container.innerHTML += '<span class="cursor-blink"></span>';
+      this.currentLine++;
+      setTimeout(() => this.typeLine(), Math.random() * 400 + 100);
+    }
+  }
+}
+
+// Initialize New Features
+document.addEventListener('DOMContentLoaded', () => {
+  // Add a slight delay to ensure original scripts are loaded
+  setTimeout(() => {
+    new NeuralNetwork('neural-canvas');
+    new CustomCursor();
+    new TiltEffect();
+    new TerminalBoot('terminal-body');
+  }, 100);
+});
