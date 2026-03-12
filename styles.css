@@ -1522,3 +1522,60 @@ body {
     border: 1px solid rgba(255,255,255,0.1);
     background: rgba(17,17,17,0.6);
 }
+
+/* Additional deep-tech styling applied for marketing update */
+.hero {
+    background: radial-gradient(circle at 50% 50%, #0d1b2a 0%, #000 100%);
+    overflow: hidden;
+}
+
+.hero-bg-video-placeholder::after {
+    opacity: 0.1;
+    background-size: 40px 40px;
+}
+
+.product-card {
+    background: linear-gradient(180deg, rgba(17,17,17,0.9), rgba(5,5,5,1));
+    border: 1px solid rgba(0, 255, 194, 0.15);
+    border-top: 4px solid var(--primary-color);
+}
+
+.product-card:hover {
+    border-color: rgba(0, 255, 194, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 255, 194, 0.1);
+}
+
+.tech-icon-wrapper {
+    font-size: 3.5rem;
+    background: radial-gradient(circle at center, rgba(0, 255, 194, 0.15) 0%, transparent 60%);
+}
+
+#featured .projects-grid {
+    margin-bottom: 3rem;
+}
+
+#featured .project-card {
+    background: linear-gradient(145deg, #111 0%, #050505 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#featured .project-card:hover {
+    border-color: rgba(0, 255, 194, 0.3);
+}
+
+.hero h1 {
+    text-shadow: 0 0 40px rgba(0, 255, 194, 0.2);
+}
+
+.logo-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+}
+
+footer {
+    background: #000;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
