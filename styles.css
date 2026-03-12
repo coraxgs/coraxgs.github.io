@@ -1579,3 +1579,271 @@ footer {
     background: #000;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
+
+/* =========================================
+   5 NEW WORLD CLASS FEATURES STYLES
+   ========================================= */
+
+/* Feature 1: Interactive Neural Network Canvas */
+#neural-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Feature 2: Custom Cursor */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.2s ease, width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
+  mix-blend-mode: difference;
+}
+
+.custom-cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--primary-color);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.1s ease-out, width 0.2s ease, height 0.2s ease;
+  will-change: transform;
+}
+
+.cursor-hover .custom-cursor {
+  transform: translate(-50%, -50%) scale(2.5);
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.cursor-hover .custom-cursor-follower {
+  width: 60px;
+  height: 60px;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Feature 3: 3D Tilt Cards with Glare */
+.tilt-card {
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  will-change: transform;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.1s;
+}
+
+.tilt-card .glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 10;
+  mix-blend-mode: overlay;
+}
+
+/* Keep card content above the glare */
+.tilt-card > * {
+  position: relative;
+  z-index: 2;
+  transform: translateZ(30px);
+}
+
+.tilt-card::before {
+  z-index: 1;
+}
+.tilt-card::after {
+  z-index: 1;
+}
+
+/* Feature 4: Glitch Text Effect */
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 var(--error-color);
+  clip: rect(24px, 550px, 90px, 0);
+  animation: glitch-anim 3s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 var(--primary-color);
+  clip: rect(85px, 550px, 140px, 0);
+  animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(10px, 9999px, 86px, 0); transform: translate(0); }
+  10% { clip: rect(80px, 9999px, 4px, 0); transform: translate(-2px, 2px); }
+  20% { clip: rect(32px, 9999px, 55px, 0); transform: translate(2px, -2px); }
+  30% { clip: rect(62px, 9999px, 90px, 0); transform: translate(-2px, 2px); }
+  40% { clip: rect(15px, 9999px, 25px, 0); transform: translate(2px, -2px); }
+  50% { clip: rect(45px, 9999px, 70px, 0); transform: translate(-2px, 2px); }
+  60% { clip: rect(85px, 9999px, 15px, 0); transform: translate(2px, -2px); }
+  70% { clip: rect(20px, 9999px, 35px, 0); transform: translate(-2px, 2px); }
+  80% { clip: rect(50px, 9999px, 60px, 0); transform: translate(2px, -2px); }
+  90% { clip: rect(75px, 9999px, 40px, 0); transform: translate(-2px, 2px); }
+  100% { clip: rect(5px, 9999px, 95px, 0); transform: translate(0); }
+}
+
+/* Glitch on hover for logos and titles */
+.logo:hover .logo-text,
+.section-title:hover {
+  animation: text-glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  color: var(--primary-color);
+}
+
+@keyframes text-glitch {
+  0% { transform: translate(0); text-shadow: none; }
+  20% { transform: translate(-2px, 2px); text-shadow: 2px -2px var(--error-color), -2px 2px var(--secondary-color); }
+  40% { transform: translate(-2px, -2px); text-shadow: 2px 2px var(--error-color), -2px -2px var(--secondary-color); }
+  60% { transform: translate(2px, 2px); text-shadow: -2px -2px var(--error-color), 2px 2px var(--secondary-color); }
+  80% { transform: translate(2px, -2px); text-shadow: -2px 2px var(--error-color), 2px -2px var(--secondary-color); }
+  100% { transform: translate(0); text-shadow: none; }
+}
+
+/* Feature 5: Terminal Boot Sequence */
+.terminal-boot-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+  background: rgba(5, 5, 5, 0.85);
+  border: 1px solid rgba(0, 255, 194, 0.2);
+  border-radius: var(--border-radius-small);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 255, 194, 0.1);
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+  text-align: left;
+}
+
+.terminal-header {
+  background: rgba(20, 20, 20, 0.9);
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 255, 194, 0.1);
+}
+
+.terminal-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.terminal-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.terminal-btn.close { background-color: #ff5f56; }
+.terminal-btn.min { background-color: #ffbd2e; }
+.terminal-btn.max { background-color: #27c93f; }
+
+.terminal-title {
+  color: var(--text-muted);
+  font-family: monospace;
+  font-size: 0.85rem;
+  margin-left: 15px;
+  flex-grow: 1;
+  text-align: center;
+  margin-right: 48px;
+}
+
+.terminal-body {
+  padding: 15px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  color: #00ffcc;
+  min-height: 150px;
+  max-height: 250px;
+  overflow-y: hidden;
+  line-height: 1.5;
+}
+
+.terminal-line {
+  margin-bottom: 5px;
+  opacity: 0;
+  animation: typeIn 0.1s forwards;
+}
+
+.terminal-line span.user {
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+
+.terminal-line span.path {
+  color: var(--text-primary);
+  font-weight: bold;
+}
+
+.terminal-line.error {
+  color: var(--error-color);
+}
+
+.terminal-line.success {
+  color: var(--success-color);
+}
+
+.cursor-blink {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background-color: #00ffcc;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes typeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Hide default cursor on desktop when custom cursor is active */
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  a, button, .cta-button, .logo, input, textarea {
+    cursor: none;
+  }
+}
