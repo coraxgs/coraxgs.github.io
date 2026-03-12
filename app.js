@@ -673,31 +673,24 @@ window.CoraxWebsite = CoraxWebsite;
 // ==========================================
 
 // Feature 1: Interactive Neural Network Canvas
+// Feature 1: Advanced Swarm Intelligence Canvas
 class NeuralNetwork {
   constructor(canvasId) {
     this.canvas = document.getElementById(canvasId);
     if (!this.canvas) return;
     this.ctx = this.canvas.getContext('2d');
     this.particles = [];
-    this.numParticles = window.innerWidth < 768 ? 50 : 120;
-    this.mouse = { x: null, y: null, radius: 150 };
+    this.numParticles = window.innerWidth < 768 ? 60 : 180; // More particles for swarm
+    this.mouse = { x: null, y: null, radius: 250 };
 
-    this.init();
-    this.animate();
-
-    window.addEventListener('resize', () => {
-      this.init();
-    });
-
+    window.addEventListener('resize', () => this.init());
     window.addEventListener('mousemove', (e) => {
       this.mouse.x = e.x;
       this.mouse.y = e.y;
     });
 
-    window.addEventListener('mouseout', () => {
-      this.mouse.x = null;
-      this.mouse.y = null;
-    });
+    this.init();
+    this.animate();
   }
 
   init() {
@@ -707,35 +700,43 @@ class NeuralNetwork {
     for (let i = 0; i < this.numParticles; i++) {
       let x = Math.random() * this.canvas.width;
       let y = Math.random() * this.canvas.height;
-      let size = Math.random() * 2 + 0.5;
-      let speedX = (Math.random() - 0.5) * 1.5;
-      let speedY = (Math.random() - 0.5) * 1.5;
-      this.particles.push(new Particle(x, y, speedX, speedY, size, this.ctx, this.canvas, this.mouse));
+      let size = Math.random() * 2 + 1;
+      let speedX = (Math.random() - 0.5) * 2;
+      let speedY = (Math.random() - 0.5) * 2;
+      this.particles.push(new Particle(x, y, speedX, speedY, size, this.ctx, this.canvas, this.mouse, this.particles));
     }
   }
 
   animate() {
     requestAnimationFrame(this.animate.bind(this));
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    // Trail effect instead of clearRect
+    this.ctx.fillStyle = 'rgba(10, 10, 10, 0.3)';
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+    const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim();
 
     for (let i = 0; i < this.particles.length; i++) {
       this.particles[i].update();
-      this.particles[i].draw();
+      this.particles[i].draw(primaryColor);
+    }
 
-      // Connect particles
-      for (let j = i; j < this.particles.length; j++) {
+    // Connect particles (Swarm connections)
+    for (let i = 0; i < this.particles.length; i++) {
+      for (let j = i + 1; j < this.particles.length; j++) {
         let dx = this.particles[i].x - this.particles[j].x;
         let dy = this.particles[i].y - this.particles[j].y;
         let distance = Math.sqrt(dx * dx + dy * dy);
 
-        if (distance < 120) {
+        if (distance < 100) {
           this.ctx.beginPath();
-          this.ctx.strokeStyle = `rgba(0, 255, 204, ${1 - distance / 120})`;
+          this.ctx.strokeStyle = primaryColor;
+          this.ctx.globalAlpha = 1 - (distance / 100);
           this.ctx.lineWidth = 0.5;
           this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
           this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
           this.ctx.stroke();
-          this.ctx.closePath();
+          this.ctx.globalAlpha = 1.0;
         }
       }
     }
@@ -743,53 +744,95 @@ class NeuralNetwork {
 }
 
 class Particle {
-  constructor(x, y, speedX, speedY, size, ctx, canvas, mouse) {
+  constructor(x, y, speedX, speedY, size, ctx, canvas, mouse, allParticles) {
     this.x = x;
     this.y = y;
-    this.speedX = speedX;
-    this.speedY = speedY;
+    this.vx = speedX;
+    this.vy = speedY;
     this.size = size;
     this.ctx = ctx;
     this.canvas = canvas;
     this.mouse = mouse;
-    this.baseX = x;
-    this.baseY = y;
-    this.density = (Math.random() * 30) + 1;
-  }
-
-  draw() {
-    this.ctx.beginPath();
-    this.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    this.ctx.fillStyle = '#00ffcc';
-    this.ctx.fill();
+    this.allParticles = allParticles;
   }
 
   update() {
-    // Collision detection
-    if (this.x > this.canvas.width || this.x < 0) this.speedX = -this.speedX;
-    if (this.y > this.canvas.height || this.y < 0) this.speedY = -this.speedY;
-
-    // Movement
-    this.x += this.speedX;
-    this.y += this.speedY;
-
-    // Mouse interaction (Swarm Intelligence effect)
+    // Mouse attraction (Swarm focus)
     if (this.mouse.x != null && this.mouse.y != null) {
       let dx = this.mouse.x - this.x;
       let dy = this.mouse.y - this.y;
       let distance = Math.sqrt(dx * dx + dy * dy);
-      let forceDirectionX = dx / distance;
-      let forceDirectionY = dy / distance;
-      let maxDistance = this.mouse.radius;
-      let force = (maxDistance - distance) / maxDistance;
-      let directionX = forceDirectionX * force * this.density;
-      let directionY = forceDirectionY * force * this.density;
 
       if (distance < this.mouse.radius) {
-        this.x -= directionX;
-        this.y -= directionY;
+        let forceDirectionX = dx / distance;
+        let forceDirectionY = dy / distance;
+        let force = (this.mouse.radius - distance) / this.mouse.radius;
+        this.vx += forceDirectionX * force * 0.2;
+        this.vy += forceDirectionY * force * 0.2;
       }
     }
+
+    // Flocking logic (Boids: Separation, Alignment, Cohesion)
+    let separationDist = 30;
+    let neighborDist = 120;
+    let avgVx = 0, avgVy = 0, count = 0;
+
+    this.allParticles.forEach(p => {
+      if (p === this) return;
+      let d = Math.hypot(p.x - this.x, p.y - this.y);
+
+      if (d > 0 && d < separationDist) {
+        // Separation
+        this.vx -= (p.x - this.x) * 0.02;
+        this.vy -= (p.y - this.y) * 0.02;
+      } else if (d > 0 && d < neighborDist) {
+        // Alignment & Cohesion
+        avgVx += p.vx;
+        avgVy += p.vy;
+        count++;
+      }
+    });
+
+    if (count > 0) {
+      avgVx /= count;
+      avgVy /= count;
+      this.vx += (avgVx - this.vx) * 0.05;
+      this.vy += (avgVy - this.vy) * 0.05;
+    }
+
+    // Limit speed
+    let speed = Math.hypot(this.vx, this.vy);
+    let maxSpeed = 3;
+    if (speed > maxSpeed) {
+      this.vx = (this.vx / speed) * maxSpeed;
+      this.vy = (this.vy / speed) * maxSpeed;
+    }
+
+    // Friction
+    this.vx *= 0.98;
+    this.vy *= 0.98;
+
+    this.x += this.vx;
+    this.y += this.vy;
+
+    // Bounce
+    if (this.x < 0 || this.x > this.canvas.width) this.vx *= -1;
+    if (this.y < 0 || this.y > this.canvas.height) this.vy *= -1;
+
+    this.x = Math.max(0, Math.min(this.canvas.width, this.x));
+    this.y = Math.max(0, Math.min(this.canvas.height, this.y));
+  }
+
+  draw(color) {
+    this.ctx.beginPath();
+    this.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    this.ctx.fillStyle = color;
+    this.ctx.shadowBlur = 10;
+    this.ctx.shadowColor = color;
+    this.ctx.fill();
+    this.ctx.shadowBlur = 0;
+  }
+}
   }
 }
 
@@ -857,97 +900,183 @@ class CustomCursor {
 }
 
 // Feature 3: 3D Tilt Cards
+// Feature 5: Holographic 3D Glass Cards (Tilt + Glare)
 class TiltEffect {
   constructor() {
     this.cards = document.querySelectorAll('.tilt-card');
-    if (this.cards.length === 0 || window.matchMedia("(any-hover: none)").matches) return;
+    if (!this.cards.length) return;
     this.init();
   }
 
   init() {
     this.cards.forEach(card => {
-      // Add glare element
-      const glare = document.createElement('div');
-      glare.classList.add('glare');
-      card.appendChild(glare);
+      // Add glare element if not exists
+      if (!card.querySelector('.tilt-card-glare')) {
+        const glare = document.createElement('div');
+        glare.className = 'tilt-card-glare';
+        card.appendChild(glare);
+      }
 
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const rotateX = ((y - centerY) / centerY) * -10; // Max tilt 10deg
-        const rotateY = ((x - centerX) / centerX) * 10;
-
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-
-        // Update glare position
-        glare.style.opacity = '1';
-        glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, 0.2) 0%, transparent 60%)`;
-      });
-
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-        glare.style.opacity = '0';
+      card.addEventListener('mousemove', this.handleMouseMove.bind(this));
+      card.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
+      card.addEventListener('mouseenter', () => {
+        card.style.transition = 'none'; // Snappier follow
+        const glare = card.querySelector('.tilt-card-glare');
+        if (glare) glare.style.opacity = '1';
       });
     });
+  }
+
+  handleMouseMove(e) {
+    const card = e.currentTarget;
+    const glare = card.querySelector('.tilt-card-glare');
+    const rect = card.getBoundingClientRect();
+
+    // Calculate mouse position relative to card center (0 to 1)
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    // Calculate rotation (-15deg to +15deg max)
+    const rotateX = ((y - centerY) / centerY) * -15; // Invert Y
+    const rotateY = ((x - centerX) / centerX) * 15;
+
+    // Apply 3D transform
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+
+    // Move Glare gradient opposite to mouse
+    if (glare) {
+      glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, 0.3) 0%, transparent 60%)`;
+    }
+  }
+
+  handleMouseLeave(e) {
+    const card = e.currentTarget;
+    const glare = card.querySelector('.tilt-card-glare');
+
+    card.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+
+    if (glare) {
+      glare.style.transition = 'opacity 0.5s ease';
+      glare.style.opacity = '0';
+    }
   }
 }
 
 // Feature 5: Terminal Boot Sequence
+// Feature 4: Interactive AI Terminal
 class TerminalBoot {
-  constructor(containerId) {
-    this.container = document.getElementById(containerId);
+  constructor(elementId) {
+    this.container = document.getElementById(elementId);
     if (!this.container) return;
-
     this.lines = [
-      '[ OK ] Started Local Data Processing Core.',
-      'Initializing Neuro-Symbolic Hybrid AI...',
-      '[ OK ] Edge AI perception module loaded (YOLOv8-Seg).',
-      '[ OK ] Generative AI cognition module loaded (Phi-3).',
-      'Establishing PQC-secured MQTT connection...',
-      '<span class="success">Connection Established.</span>',
-      'Deploying Swarm Intelligence CBBA Protocol...',
-      '<span class="success">GAPbot Fleet synchronized.</span>',
-      '<span class="user">corax@system</span>:<span class="path">~/corax_os</span>$ ./start_ecosystem.sh',
-      'Booting Cyber-Physical System...',
-      '<span class="success">System Ready. Awaiting Commands.</span>'
+      "Initializing Corax OS v2.0...",
+      "Loading kernel modules...",
+      "[OK] Swarm Intelligence loaded.",
+      "[OK] Post-Quantum Cryptography initialized.",
+      "[OK] Edge AI Node connected.",
+      "Connection established. Awaiting command."
     ];
     this.currentLine = 0;
+    this.container.innerHTML = ''; // Clear initial content
     this.init();
   }
 
-  init() {
-    this.container.innerHTML = '<span class="cursor-blink"></span>';
-    setTimeout(() => this.typeLine(), 500);
+  async init() {
+    // Boot sequence
+    for (let i = 0; i < this.lines.length; i++) {
+      await this.typeLine(this.lines[i]);
+    }
+    this.setupInput();
   }
 
-  typeLine() {
-    if (this.currentLine < this.lines.length) {
-      const lineText = this.lines[this.currentLine];
+  async typeLine(text, delay = 50) {
+    return new Promise(resolve => {
+      const lineElement = document.createElement("div");
+      lineElement.className = "terminal-line";
+      this.container.appendChild(lineElement);
 
-      // Remove cursor temporarily
-      const cursor = this.container.querySelector('.cursor-blink');
-      if (cursor) this.container.removeChild(cursor);
+      let i = 0;
+      const interval = setInterval(() => {
+        lineElement.textContent += text.charAt(i);
+        i++;
+        this.container.scrollTop = this.container.scrollHeight;
+        if (i >= text.length) {
+          clearInterval(interval);
+          setTimeout(resolve, 200);
+        }
+      }, delay);
+    });
+  }
 
-      const lineDiv = document.createElement('div');
-      lineDiv.className = 'terminal-line';
+  setupInput() {
+    const inputContainer = document.createElement('div');
+    inputContainer.className = 'terminal-input-line';
+    inputContainer.innerHTML = '<span class="prompt">root@corax:~#</span> <input type="text" id="terminal-input" autocomplete="off" autofocus>';
+    this.container.appendChild(inputContainer);
 
-      // If it contains HTML, just set it, else type it out char by char
-      if (lineText.includes('<')) {
-         lineDiv.innerHTML = lineText;
-         this.container.appendChild(lineDiv);
-         this.container.innerHTML += '<span class="cursor-blink"></span>';
-         this.container.scrollTop = this.container.scrollHeight;
-         this.currentLine++;
-         setTimeout(() => this.typeLine(), Math.random() * 300 + 100);
-      } else {
-        this.container.appendChild(lineDiv);
-        this.typeChar(lineDiv, lineText, 0);
+    const inputField = document.getElementById('terminal-input');
+
+    // Focus input when terminal is clicked
+    this.container.parentElement.addEventListener('click', () => {
+      inputField.focus();
+    });
+
+    inputField.addEventListener('keydown', async (e) => {
+      if (e.key === 'Enter') {
+        const cmd = inputField.value.trim().toLowerCase();
+        inputField.value = '';
+        inputContainer.remove(); // Remove input to print response
+
+        await this.typeLine(`root@corax:~# ${cmd}`, 10);
+        await this.processCommand(cmd);
+
+        this.setupInput(); // Re-add input after response
+        inputField.focus();
       }
+    });
+  }
+
+  async processCommand(cmd) {
+    switch (cmd) {
+      case 'help':
+        await this.typeLine("Available commands:");
+        await this.typeLine("  status   - Show system diagnostics");
+        await this.typeLine("  analyze  - Run environmental analysis");
+        await this.typeLine("  deploy   - Initialize GAPbot swarm protocol");
+        await this.typeLine("  clear    - Clear terminal output");
+        break;
+      case 'status':
+        await this.typeLine("[System Status]");
+        await this.typeLine("- Edge Nodes: 4/4 Online");
+        await this.typeLine("- Swarm Latency: < 5ms");
+        await this.typeLine("- Compliance Logic: ACTIVE (EU AI Act Compliant)");
+        await this.typeLine("- GAPbot Fleet: Idle, charging via MPPT.");
+        break;
+      case 'analyze':
+        await this.typeLine("Initiating Edge AI analysis (YOLOv8-Seg)...");
+        await this.typeLine("[██████████] 100%");
+        await this.typeLine("Result: Nominal. Resource usage optimized by 42%.");
+        break;
+      case 'deploy':
+        await this.typeLine("WARNING: Authorized personnel only.");
+        await this.typeLine("Authenticating via Web3 wallet...");
+        setTimeout(async () => {
+          await this.typeLine("Authentication successful. Deploying GAPbot unit Alpha.");
+        }, 1000);
+        break;
+      case 'clear':
+        this.container.innerHTML = '';
+        break;
+      case '':
+        break;
+      default:
+        await this.typeLine(`Command not found: ${cmd}. Type 'help' for options.`);
     }
+  }
+}
   }
 
   typeChar(element, text, index) {
@@ -973,3 +1102,176 @@ document.addEventListener('DOMContentLoaded', () => {
     new TerminalBoot('terminal-body');
   }, 100);
 });
+
+// Feature 2: 3D GAPbot Wireframe (Three.js)
+function init3DGAPbot() {
+  const container = document.getElementById('gapbot-3d-container');
+  if (!container || typeof THREE === 'undefined') return;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+  camera.position.z = 15;
+  camera.position.y = 5;
+
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  container.appendChild(renderer.domElement);
+
+  // Group to rotate everything
+  const robotGroup = new THREE.Group();
+  scene.add(robotGroup);
+
+  // Material for wireframe
+  const material = new THREE.MeshBasicMaterial({
+    color: 0x00ffc2,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.8
+  });
+
+  // Body (Hexagon-ish shape for hexapod)
+  const bodyGeo = new THREE.CylinderGeometry(2, 2.5, 1, 6);
+  const body = new THREE.Mesh(bodyGeo, material);
+  robotGroup.add(body);
+
+  // Legs (6 legs around the body)
+  const numLegs = 6;
+  const radius = 2.5;
+
+  for (let i = 0; i < numLegs; i++) {
+    const angle = (i / numLegs) * Math.PI * 2;
+
+    // Leg group
+    const legGroup = new THREE.Group();
+
+    // Coxa (base joint)
+    const coxaGeo = new THREE.BoxGeometry(1.5, 0.5, 0.5);
+    const coxa = new THREE.Mesh(coxaGeo, material);
+    coxa.position.x = 0.75;
+    legGroup.add(coxa);
+
+    // Femur (upper leg)
+    const femurGeo = new THREE.BoxGeometry(2, 0.4, 0.4);
+    const femur = new THREE.Mesh(femurGeo, material);
+    femur.position.x = 2.5;
+    femur.rotation.z = Math.PI / 4; // Angle down
+    legGroup.add(femur);
+
+    // Tibia (lower leg)
+    const tibiaGeo = new THREE.BoxGeometry(2.5, 0.3, 0.3);
+    const tibia = new THREE.Mesh(tibiaGeo, material);
+    tibia.position.x = 3.5;
+    tibia.position.y = -1.5;
+    tibia.rotation.z = -Math.PI / 3;
+    legGroup.add(tibia);
+
+    // Position and rotate leg around body
+    legGroup.position.x = Math.cos(angle) * radius;
+    legGroup.position.z = Math.sin(angle) * radius;
+    legGroup.rotation.y = -angle; // Point outward
+
+    robotGroup.add(legGroup);
+  }
+
+  // Animation Loop
+  let time = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+
+    // Rotate entire robot slowly
+    robotGroup.rotation.y += 0.005;
+
+    // Animate legs for walking effect
+    time += 0.05;
+    robotGroup.children.forEach((child, index) => {
+      if (index > 0) { // Skip body (index 0)
+        // Simulate walking gait (offset phase based on leg index)
+        const phase = (index % 2 === 0) ? 0 : Math.PI;
+        child.position.y = Math.sin(time + phase) * 0.3;
+      }
+    });
+
+    renderer.render(scene, camera);
+  }
+
+  animate();
+
+  // Resize handler
+  window.addEventListener('resize', () => {
+    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
+  });
+}
+
+// Feature 2 (continued): Cinematic Scroll Animations (GSAP)
+function initScrollAnimations() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Fade up headers
+  gsap.utils.toArray('.section-title').forEach(title => {
+    gsap.from(title, {
+      scrollTrigger: {
+        trigger: title,
+        start: 'top 85%',
+        toggleActions: 'play none none reverse'
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: 'power3.out'
+    });
+  });
+
+  // Stagger feature cards
+  gsap.utils.toArray('.features-grid').forEach(grid => {
+    const cards = grid.querySelectorAll('.feature-card');
+    gsap.from(cards, {
+      scrollTrigger: {
+        trigger: grid,
+        start: 'top 80%',
+      },
+      y: 100,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: 'back.out(1.7)'
+    });
+  });
+
+  // Fade in 3D container
+  const container3d = document.getElementById('gapbot-3d-container');
+  if (container3d) {
+    gsap.from(container3d, {
+      scrollTrigger: {
+        trigger: container3d,
+        start: 'top 75%'
+      },
+      scale: 0.8,
+      opacity: 0,
+      rotationX: -20,
+      duration: 1.5,
+      ease: 'power2.out'
+    });
+  }
+
+  // Projects Grid
+  gsap.utils.toArray('.projects-grid').forEach(grid => {
+    const cards = grid.querySelectorAll('.project-card');
+    if(cards.length) {
+       gsap.from(cards, {
+        scrollTrigger: {
+          trigger: grid,
+          start: 'top 80%',
+        },
+        x: -50,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power3.out'
+      });
+    }
+  });
+}

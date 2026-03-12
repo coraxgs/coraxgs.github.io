@@ -2052,3 +2052,63 @@ body {
     cursor: none;
   }
 }
+
+/* Interactive Terminal CSS enhancements */
+.terminal-input-line {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-family: monospace;
+}
+.terminal-input-line .prompt {
+  color: var(--primary-color);
+  margin-right: 8px;
+}
+#terminal-input {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: monospace;
+  font-size: inherit;
+  outline: none;
+  width: 100%;
+}
+.terminal-line {
+  white-space: pre-wrap; /* Preserve spaces for terminal output formatting */
+}
+
+/* Holographic 3D Glass Cards (Tilt + Glare) */
+.tilt-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  transform-style: preserve-3d; /* Required for deep 3D children */
+}
+
+/* Inner elements pop out */
+.tilt-card > * {
+  transform: translateZ(30px);
+}
+
+.tilt-card-glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+  mix-blend-mode: overlay; /* Creates the "glassy" sheen */
+}
+
+.tilt-card:hover .tilt-card-glare {
+  opacity: 1;
+}
